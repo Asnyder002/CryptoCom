@@ -4,6 +4,6 @@ import java.rmi.*;
 
 public interface CryptoComManager extends Remote{
     
-    public void sendString() throws RemoteException;
+    public void sendString(String message) throws RemoteException;
     public String receiveString() throws RemoteException;
 }
