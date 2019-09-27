@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoComManager{
 
-    ArrayList<String> stringList = new ArrayList<String>();
+    ArrayList<String> stringList = new ArrayList<>();
     
     public CryptoComManagerImpl() throws RemoteException{
         super();
