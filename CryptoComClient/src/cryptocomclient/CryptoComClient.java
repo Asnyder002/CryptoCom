@@ -1,4 +1,4 @@
-package ClientSide;
+package cryptocomclient;
 
 import RemoteObject.CryptoComManager;
 import RemoteObject.CryptoComManagerImpl;
