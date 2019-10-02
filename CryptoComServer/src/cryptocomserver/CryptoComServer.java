@@ -1,21 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cryptocomserver;
 
-/**
- *
- * @author Adam
- */
-public class CryptoComServer {
+import java.rmi.*;
+import RemoteObject.*;
 
-    /**
-     * @param args the command line arguments
-     */
+public class CryptoComServer {
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        System.out.println("CryptoComServer starting...");
+        System.setSecurityManager(new SecurityManager());
+        System.out.println("Security Manager installed, Setting up service");
+        
+        try {
+            CryptoComManagerImpl ccm = new CryptoComManagerImpl();
+            
+            System.out.println("Publishing CryptoComServer...");
+            
+            Naming.rebind(CryptoComManager.LOOKUPNAME, ccm);
+            
+            System.out.println("CryptoComServer ready.");
+        }
+        catch (Exception e) {
+            System.err.println(e);
+            System.exit(1);
+            
+        }
+        
     }
     
 }
