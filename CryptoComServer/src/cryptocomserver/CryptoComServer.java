@@ -2,13 +2,18 @@ package cryptocomserver;
 
 import java.rmi.*;
 import RemoteObject.*;
+import java.rmi.registry.LocateRegistry;
 
 public class CryptoComServer {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         
         System.out.println("CryptoComServer starting...");
-        System.setSecurityManager(new SecurityManager());
+        
+        System.out.println("Creating Registry...");
+        LocateRegistry.createRegistry(1099);
+        System.out.println("Registry created.");
+        //System.setSecurityManager(new SecurityManager());
         System.out.println("Security Manager installed, Setting up service");
         
         try {
