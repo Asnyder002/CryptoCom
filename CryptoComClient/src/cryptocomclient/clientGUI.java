@@ -6,6 +6,7 @@
 package cryptocomclient;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author codbo
@@ -18,7 +19,22 @@ public class clientGUI extends javax.swing.JFrame {
     public clientGUI() {
         initComponents();
     }
-
+    String userName;
+    String outgoingMessageContents;
+    String outgoingMessageRecipient;
+    String incomingMessageContents;
+    
+    public void setIncomingMessage(String message) {
+      this.incomingMessageContents = message;  
+    } 
+    
+    public String getMessage() {
+        return this.outgoingMessageContents;
+    }
+    
+    public String getRecipient() {
+        return this.outgoingMessageRecipient;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,6 +54,7 @@ public class clientGUI extends javax.swing.JFrame {
         loginLabel = new javax.swing.JLabel();
         loginFieldUsername = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
+        loggedInLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +63,7 @@ public class clientGUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(messageField);
 
         composeButton.setText("Compose");
+        composeButton.setEnabled(false);
         composeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 composeButtonActionPerformed(evt);
@@ -54,6 +72,7 @@ public class clientGUI extends javax.swing.JFrame {
         });
 
         sendButton.setText("Send");
+        sendButton.setEnabled(false);
         sendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendButtonActionPerformed(evt);
@@ -61,6 +80,7 @@ public class clientGUI extends javax.swing.JFrame {
         });
 
         nextMessageButton.setText("Next Message");
+        nextMessageButton.setEnabled(false);
         nextMessageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextMessageButtonActionPerformed(evt);
@@ -70,7 +90,6 @@ public class clientGUI extends javax.swing.JFrame {
         recipientBox.setEnabled(false);
 
         recipientLabel.setText("Recipient");
-        recipientLabel.setEnabled(false);
 
         loginLabel.setText("Username:");
 
@@ -86,6 +105,8 @@ public class clientGUI extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
+
+        loggedInLabel.setText("Not currently logged in.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,13 +127,18 @@ public class clientGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(recipientBox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(100, 100, 100)
-                        .addComponent(loginLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loginFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(loginButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                        .addComponent(nextMessageButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(loggedInLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(loginLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(loginFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(loginButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                                .addComponent(nextMessageButton)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,15 +158,31 @@ public class clientGUI extends javax.swing.JFrame {
                     .addComponent(loginLabel)
                     .addComponent(loginFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginButton))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loggedInLabel)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
-        String messageContents = messageField.getText();
-        String messageRecipient = recipientBox.getText();
+        if (messageField.getText().trim().isEmpty()||recipientBox.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Either recipient or message field is empty, please ensure both fields are correctly populated", "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+        
+        else {
+        this.outgoingMessageContents = messageField.getText();
+        this.outgoingMessageRecipient = recipientBox.getText();
+        JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
+        messageField.setText("");
+        recipientBox.setText("");
+        messageField.setEnabled(false);
+        recipientBox.setEnabled(false);
+        sendButton.setEnabled(false);
+        }
+        
+        
     }//GEN-LAST:event_sendButtonActionPerformed
 
     private void composeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_composeButtonActionPerformed
@@ -149,12 +191,20 @@ public class clientGUI extends javax.swing.JFrame {
 
     private void composeButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_composeButtonActionPerformed1
         messageField.setText(null);
+        recipientBox.setEnabled(true);
+        sendButton.setEnabled(true);
+        messageField.setEnabled(true);
+        recipientLabel.setVisible(true);
+        recipientBox.setVisible(true);
+        sendButton.setVisible(true);
     }//GEN-LAST:event_composeButtonActionPerformed1
 
     private void nextMessageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextMessageButtonActionPerformed
         recipientLabel.setVisible(false);
         recipientBox.setVisible(false);
-        //messageField.setText(t);
+        sendButton.setVisible(false);
+        messageField.setEnabled(false);
+        messageField.setText("SampleText SampleText");
         //thinking of using a stack for holding messages, pop one
     }//GEN-LAST:event_nextMessageButtonActionPerformed
 
@@ -163,14 +213,15 @@ public class clientGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loginFieldUsernameActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if (loginFieldUsername.getText() != null) {
-            String loginUsername = loginFieldUsername.getText();
-            loginFieldUsername.setVisible(false);
-            loginLabel.setVisible(false);
+        if (loginFieldUsername.getText().trim().isEmpty()) {
+            loggedInLabel.setText("Login field must not be empty.");
         }
         
         else {
-            JOptionPane.showMessageDialog(null,"Login field must not be empty.");
+            this.userName = loginFieldUsername.getText();
+            loggedInLabel.setText("Currently logged in as " + this.userName);
+            nextMessageButton.setEnabled(true);
+            composeButton.setEnabled(true);
         }
         
         
@@ -214,6 +265,7 @@ public class clientGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton composeButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel loggedInLabel;
     private javax.swing.JButton loginButton;
     private javax.swing.JTextField loginFieldUsername;
     private javax.swing.JLabel loginLabel;

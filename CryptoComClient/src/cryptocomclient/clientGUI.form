@@ -41,13 +41,21 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="loginLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="loginFieldUsername" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="loginButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
-                      <Component id="nextMessageButton" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="loggedInLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="loginLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="loginFieldUsername" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="loginButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="89" max="32767" attributes="0"/>
+                              <Component id="nextMessageButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -73,7 +81,9 @@
                   <Component id="loginFieldUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="loginButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="loggedInLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,6 +107,7 @@
     <Component class="javax.swing.JButton" name="composeButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Compose"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="composeButtonActionPerformed,composeButtonActionPerformed1"/>
@@ -105,6 +116,7 @@
     <Component class="javax.swing.JButton" name="sendButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Send"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendButtonActionPerformed"/>
@@ -113,6 +125,7 @@
     <Component class="javax.swing.JButton" name="nextMessageButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Next Message"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextMessageButtonActionPerformed"/>
@@ -126,7 +139,6 @@
     <Component class="javax.swing.JLabel" name="recipientLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Recipient"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="loginLabel">
@@ -146,6 +158,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="loggedInLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Not currently logged in."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

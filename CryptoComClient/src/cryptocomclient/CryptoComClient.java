@@ -13,10 +13,12 @@ public class CryptoComClient {
     public static void main(String[] args) {
         
         gui = new clientGUI();
+        gui.pack();
+        gui.setVisible(true);
         
         
         
-        /*try {
+        try {
             System.out.println("CryptoComClient starting look up...");
             netConn = (CryptoComManager)Naming.lookup(CryptoComManager.LOOKUPNAME);
             netConn.sendString("TEST STRING");
@@ -26,7 +28,7 @@ public class CryptoComClient {
         catch (Exception e) {
             System.err.println("CrytpoComCilent: CryptoComManager exception: " + e.getMessage());
         }
-      */  
+        
     }
     
 }
