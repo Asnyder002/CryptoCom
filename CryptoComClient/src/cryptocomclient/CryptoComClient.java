@@ -3,7 +3,6 @@ package cryptocomclient;
 import RemoteObject.CryptoComManager;
 import RemoteObject.CryptoComManagerImpl;
 import java.rmi.*;
-import java.rmi.registry.LocateRegistry;
 
 public class CryptoComClient {
     
