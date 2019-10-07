@@ -31,7 +31,9 @@ public class CryptoComClient {
         
     }
     
-    public void removeRecivedMessage() {
+    public void removeRecivedMessage(Message message) {
+        
+        receivedMessageList.remove(message);
         
     }
     
