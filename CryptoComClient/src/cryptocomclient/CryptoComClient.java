@@ -21,6 +21,8 @@ public class CryptoComClient {
     
     public Message openMessage(int num) {
         
+        return receivedMessageList.get(num);
+        
     }
     
     public void addReceivedMessage(Message message) {
