@@ -27,6 +27,8 @@ public class CryptoComClient {
     
     public void addReceivedMessage(Message message) {
         
+        receivedMessageList.add(message);
+        
     }
     
     public void removeRecivedMessage() {
