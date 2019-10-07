@@ -15,6 +15,8 @@ public class CryptoComClient {
     
     public Message createNewMessage(String memo, String sender, String recipient) {
         
+        return new Message(memo, sender, recipient);
+        
     }
     
     public Message openMessage(int num) {
