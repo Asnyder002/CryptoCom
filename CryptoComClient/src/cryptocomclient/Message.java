@@ -12,4 +12,13 @@ public class Message {
         this.recipient = recipient;
     }
     
+    public String getMemo() {return memo;}
+    public void setMemo(String memo) {this.memo = memo;}
+    
+    public String getSender() {return sender;}
+    public void setSender(String sender) {this.sender = sender;}
+    
+    public String getRecipient() {return recipient;}
+    public void setRecipent(String recipient) {this.recipient = recipient;}
+    
 }
