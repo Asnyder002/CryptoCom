@@ -7,17 +7,17 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
 
-public class Decryption 
+public class Decryption
 {
-   
+
     public static String decrypt(String strToDecrypt, SecretKey secretKey)
     {
         try
         {
-           
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+
+            Cipher decrypt = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            decrypt.init(Cipher.DECRYPT_MODE, secretKey);
+            return new String(decrypt.doFinal(Base64.getDecoder().decode(strToDecrypt)));
         }
         catch (Exception e)
         {
@@ -25,5 +25,5 @@ public class Decryption
         }
         return null;
     }
-    
+
 }
