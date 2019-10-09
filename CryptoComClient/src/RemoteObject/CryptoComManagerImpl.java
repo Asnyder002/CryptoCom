@@ -29,8 +29,10 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
     }
 
     @Override
-    public ArrayList<Message> receiveMessagesFromServer() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Message> receiveMessagesFromServer(String userName) throws RemoteException {
+        
+        return messageMap.get(userName);
+        
     }
     
 
