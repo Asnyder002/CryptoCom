@@ -16,6 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
  * @author Humble Foundations
  */
 public class Encryption {
+    
      public static String encrypt(String strToEncrypt,SecretKey secretKey)
     {
         try
