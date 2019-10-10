@@ -1,40 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Crypto;
-
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.cert.CertificateException;
 import java.util.Base64;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-/**
- *
- * @author youngking
- */
+
+
+
+/* to generate a new secret key use: secretKey = (SecretKeySpec) generateKey();
+    
+    to encrypt and decrypt call the textEncryption method with the the secret key as the second parameter:
+    
+    String Encrypted = textEncryption(usrInput, secretKey);
+    String Decrypted = textDecryption(Encrypted, secretKey);
+    
+    */
+
+
 public class Ciphering 
 {
     
-//Research in progress
-    
-//    public static void keystore()
-//    {
-//    }
-    
 // Generating a random key to be used for the ciphering process
     private static SecretKeySpec secretKey;
-    public static SecretKey generate() throws NoSuchAlgorithmException
+    
+    public static SecretKey generateKey() throws NoSuchAlgorithmException
 {
     
     KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
     SecureRandom secureRandom = new SecureRandom();
-    int keyBitSize = 256;
+    final int keyBitSize = 256;
 
     keyGenerator.init(keyBitSize, secureRandom);
 
@@ -44,40 +49,9 @@ public class Ciphering
     return key;
     
 }
- // This class tests the AES encryption proces
-    public static void /*main*/test(String[] args) throws NoSuchAlgorithmException
-{
-  
     
-    
-    // Getting the user input to encrypt it
-    Scanner userInput = new Scanner(System.in);
-    System.out.println("Enter text to encrypt ");
-    String usrInput = userInput.nextLine() ;
 
-   // Generating a random key to go along with the unencrypted text
-    secretKey = (SecretKeySpec) keyGenerator.generate();
-            
-           
-           
-        
-       
-      
-    // Sending the  text and the secret key to be encrypted
-     String Encrypted = Encryption.encrypt(usrInput, secretKey);
-     
-     // Calling the encrypted text and then sending it with the secret key to be decrypted
-     String Decrypted = Decryption.decrypt(Encrypted, secretKey);
-     
-    //Printing Info
-    System.out.println("Encoding algorithm "+secretKey.getAlgorithm());
-    System.out.println("Original String "+usrInput);
-    System.out.println("Encrypted String "+Encrypted);
-    System.out.println("Decrypted String "+Decrypted);
-}
-    
-    
-     public static String encrypt(String strToEncrypt,SecretKey secretKey)
+     public static String textEncryption(String strToEncrypt,SecretKey secretKey)
     {
         try
         {
@@ -103,7 +77,7 @@ public class Ciphering
     }
 
      
-    public static String decrypt(String strToDecrypt, SecretKey secretKey)
+    public static String textDecryption(String strToDecrypt, SecretKey secretKey)
     {
         try
         {
@@ -121,6 +95,39 @@ public class Ciphering
 
  
     
+       /*
+ // This class tests the AES encryption process
+    public static void main(String[] args) throws NoSuchAlgorithmException
+{
+  
+    
+    
+    // Getting the user input to encrypt it
+    Scanner userInput = new Scanner(System.in);
+    System.out.println("Enter text to encrypt ");
+    String usrInput = userInput.nextLine() ;
+
+   // Generating a random key to go along with the unencrypted text
+    secretKey = (SecretKeySpec) generateKey();
+            
+           
+           
+        
+       
+      
+    // Sending the  text and the secret key to be encrypted
+     String Encrypted = textEncryption(usrInput, secretKey);
      
+     // Calling the encrypted text and then sending it with the secret key to be decrypted
+     String Decrypted = textDecryption(Encrypted, secretKey);
+     
+    //Printing Info
+    System.out.println("Encoding algorithm "+secretKey.getAlgorithm());
+    System.out.println("Original String "+usrInput);
+    System.out.println("Encrypted String "+Encrypted);
+    System.out.println("Decrypted String "+Decrypted);
+}
+    
+   */ 
 }
 
