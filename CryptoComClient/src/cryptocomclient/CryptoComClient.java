@@ -40,7 +40,7 @@ public class CryptoComClient {
     
     // Calls the remote object to get the stored messages then adds them to the
     // clients receivedMessageList
-    public void getReceivedMessage() throws RemoteException {
+    public void getReceivedMessages() throws RemoteException {
         
         ArrayList<Message> receivedList = ccm.receiveMessagesFromServer(userName);
         
