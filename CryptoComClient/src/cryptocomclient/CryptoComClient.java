@@ -31,6 +31,13 @@ public class CryptoComClient {
         
     }
     
+    // Takes in a message and sends the message to the remote object
+    public void sendMessage(Message message) throws RemoteException {
+        
+        ccm.sendMessageToServer(message);
+        
+    }
+    
     // Calls the remote object to get the stored messages then adds them to the
     // clients receivedMessageList
     public void getReceivedMessage() throws RemoteException {
@@ -41,10 +48,6 @@ public class CryptoComClient {
             receivedMessageList.add(message);
         }
       
-    }
-    
-    public void sendMessage(Message message) throws RemoteException {
-        ccm.sendMessageToServer(message);
     }
     
     // Removes a message from the received message arrayList
