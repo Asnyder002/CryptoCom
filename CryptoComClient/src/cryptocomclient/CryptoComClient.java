@@ -22,17 +22,19 @@ public class CryptoComClient {
     }
     
     // Returns a message from the recived arrayList at the specified index.
-    public Message openMessage(int num) {
+    public Message openMessage(int index) {
         
-        return receivedMessageList.get(num);
+        return receivedMessageList.get(index);
         
     }
     
     // Adds a message to the received message arrayList
-    public void addReceivedMessage(Message message) {
+    public void addReceivedMessage(ArrayList<Message> receivedList) {
         
-        receivedMessageList.add(message);
-        
+        for(Message message: receivedList) {
+            receivedMessageList.add(message);
+        }
+      
     }
     
     // Removes a message from the received message arrayList
