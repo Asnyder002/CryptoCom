@@ -35,6 +35,8 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         
     }
     
+    public HashMap<String, ArrayList<Message>> getHashMap() {return messageMap;}
+    
 
     
     
