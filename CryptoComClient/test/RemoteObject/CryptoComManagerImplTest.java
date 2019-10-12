@@ -41,8 +41,23 @@ public class CryptoComManagerImplTest {
     @Test
     public void testReceiveMessagesFromServer() throws Exception {
         
+        // Creates a testList and adds message to the list
+        ArrayList<Message> testList = new ArrayList<>();
+        Message message1 = new Message("Test", "Adam", "Bob");
+        Message message2 = new Message("Testing", "Tom", "Bob");
+        testList.add(message1);
+        testList.add(message2);
         
+        // Sends the messages to the remote object
+        CryptoComManager ccm = new CryptoComManagerImpl();
+        for(Message message: testList) {
+            ccm.sendMessageToServer(message);
+        }
         
+        ArrayList<Message> expected = testList;
+        ArrayList<Message> actual = ccm.receiveMessagesFromServer("Bob");
+        
+        assertEquals(expected, actual);
     }
     
 }
