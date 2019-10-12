@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoComManager{
 
-    HashMap<String, ArrayList<Message>> messageMap = new HashMap<>();
+    private HashMap<String, ArrayList<Message>> messageMap = new HashMap<>();
     
     public CryptoComManagerImpl() throws RemoteException{
         super();
