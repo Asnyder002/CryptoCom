@@ -4,37 +4,54 @@
  * and open the template in the editor.
  */
 package clientUI;
-import javax.swing.JOptionPane;
 
+import javax.swing.JTable;
 
 /**
  *
  * @author codbo
  */
-public class clientGUI extends javax.swing.JFrame {
+public class clientGUI extends javax.swing.JFrame implements IClient {
 
     /**
      * Creates new form clientGUI
      */
-    public clientGUI() {
+    public clientGUI(ClientPresenter presenter) {
+        this.presenter = presenter;
         initComponents();
     }
-    String userName;
-    String outgoingMessageContents;
-    String outgoingMessageRecipient;
-    String incomingMessageContents;
     
-    public void setIncomingMessage(String message) {
-      this.incomingMessageContents = message;  
-    } 
+    ClientPresenter presenter;
     
-    public String getMessage() {
-        return this.outgoingMessageContents;
+    @Override
+    public String getLoginText() {
+        return loginTextField.getText();
     }
-    
-    public String getRecipient() {
-        return this.outgoingMessageRecipient;
+    @Override
+    public void setLoginText(String name){
+        this.loginStatusLabel.setText("Currently logged in as:" + name); 
     }
+    @Override
+    public String getRecipientText() {
+        return this.recipientTextField.getText();
+    }
+    @Override
+    public void setRecipientText(String name) {
+        this.recipientTextField.setText(name);
+    }
+    @Override
+    public String getMessageText() {
+        return this.messageTextArea.getText();
+    }
+    @Override
+    public void setMessageText(String message) {
+        this.messageTextArea.setText(message);
+    }
+    @Override
+    public JTable getJTable() {
+        return this.unreadMessagesTable;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,68 +62,53 @@ public class clientGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        messageField = new javax.swing.JTextArea();
-        composeButton = new javax.swing.JButton();
+        messageTextArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        unreadMessagesTable = new javax.swing.JTable();
+        recipientTextField = new javax.swing.JTextField();
         sendButton = new javax.swing.JButton();
-        nextMessageButton = new javax.swing.JButton();
-        recipientBox = new javax.swing.JTextField();
-        recipientLabel = new javax.swing.JLabel();
-        loginLabel = new javax.swing.JLabel();
-        loginFieldUsername = new javax.swing.JTextField();
+        clearButton = new javax.swing.JButton();
+        loginTextField = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
-        loggedInLabel = new javax.swing.JLabel();
+        loginStatusLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        messageField.setColumns(20);
-        messageField.setRows(5);
-        jScrollPane1.setViewportView(messageField);
+        messageTextArea.setColumns(20);
+        messageTextArea.setRows(5);
+        jScrollPane1.setViewportView(messageTextArea);
 
-        composeButton.setText("Compose");
-        composeButton.setEnabled(false);
-        composeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                composeButtonActionPerformed(evt);
-                composeButtonActionPerformed1(evt);
+        unreadMessagesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Sender"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
+        jScrollPane2.setViewportView(unreadMessagesTable);
+
+        recipientTextField.setText("Recipient");
 
         sendButton.setText("Send");
-        sendButton.setEnabled(false);
-        sendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendButtonActionPerformed(evt);
-            }
-        });
 
-        nextMessageButton.setText("Next Message");
-        nextMessageButton.setEnabled(false);
-        nextMessageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextMessageButtonActionPerformed(evt);
-            }
-        });
-
-        recipientBox.setEnabled(false);
-
-        recipientLabel.setText("Recipient");
-
-        loginLabel.setText("Username:");
-
-        loginFieldUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginFieldUsernameActionPerformed(evt);
-            }
-        });
+        clearButton.setText("Clear");
 
         loginButton.setText("Login");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
 
-        loggedInLabel.setText("Not currently logged in.");
+        loginStatusLabel.setText("Not currently logged in.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,117 +117,50 @@ public class clientGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(composeButton)
-                                .addGap(85, 85, 85)
-                                .addComponent(sendButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(recipientLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(recipientBox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(100, 100, 100)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(recipientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginStatusLabel))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(loggedInLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(sendButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(clearButton))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(loginLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(loginFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(loginButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                                .addComponent(nextMessageButton)))))
+                                .addGap(53, 53, 53)
+                                .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(loginButton)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(recipientBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recipientLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(composeButton)
+                    .addComponent(recipientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendButton)
-                    .addComponent(nextMessageButton)
-                    .addComponent(loginLabel)
-                    .addComponent(loginFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loggedInLabel)
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(clearButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginStatusLabel))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
-        if (messageField.getText().trim().isEmpty()||recipientBox.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Either recipient or message field is empty, please ensure both fields are correctly populated", "Error", JOptionPane.ERROR_MESSAGE); 
-        }
-        
-        else {
-        this.outgoingMessageContents = messageField.getText();
-        this.outgoingMessageRecipient = recipientBox.getText();
-        JOptionPane.showMessageDialog(null, "Message Sent Successfully!");
-        messageField.setText("");
-        recipientBox.setText("");
-        messageField.setEnabled(false);
-        recipientBox.setEnabled(false);
-        sendButton.setEnabled(false);
-        }
-        
-        
-    }//GEN-LAST:event_sendButtonActionPerformed
-
-    private void composeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_composeButtonActionPerformed
-        messageField.setText(null);
-    }//GEN-LAST:event_composeButtonActionPerformed
-
-    private void composeButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_composeButtonActionPerformed1
-        messageField.setText(null);
-        recipientBox.setEnabled(true);
-        sendButton.setEnabled(true);
-        messageField.setEnabled(true);
-        recipientLabel.setVisible(true);
-        recipientBox.setVisible(true);
-        sendButton.setVisible(true);
-    }//GEN-LAST:event_composeButtonActionPerformed1
-
-    private void nextMessageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextMessageButtonActionPerformed
-        recipientLabel.setVisible(false);
-        recipientBox.setVisible(false);
-        sendButton.setVisible(false);
-        messageField.setEnabled(false);
-        messageField.setText("SampleText SampleText");
-        //thinking of using a stack for holding messages, pop one
-    }//GEN-LAST:event_nextMessageButtonActionPerformed
-
-    private void loginFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginFieldUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginFieldUsernameActionPerformed
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        if (loginFieldUsername.getText().trim().isEmpty()) {
-            loggedInLabel.setText("Login field must not be empty.");
-        }
-        
-        else {
-            this.userName = loginFieldUsername.getText();
-            loggedInLabel.setText("Currently logged in as " + this.userName);
-            nextMessageButton.setEnabled(true);
-            composeButton.setEnabled(true);
-        }
-        
-        
-    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,22 +192,21 @@ public class clientGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new clientGUI().setVisible(true);
+                //new clientGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton composeButton;
+    private javax.swing.JButton clearButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel loggedInLabel;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton loginButton;
-    private javax.swing.JTextField loginFieldUsername;
-    private javax.swing.JLabel loginLabel;
-    private javax.swing.JTextArea messageField;
-    private javax.swing.JButton nextMessageButton;
-    private javax.swing.JTextField recipientBox;
-    private javax.swing.JLabel recipientLabel;
+    private javax.swing.JLabel loginStatusLabel;
+    private javax.swing.JTextField loginTextField;
+    private javax.swing.JTextArea messageTextArea;
+    private javax.swing.JTextField recipientTextField;
     private javax.swing.JButton sendButton;
+    private javax.swing.JTable unreadMessagesTable;
     // End of variables declaration//GEN-END:variables
 }
