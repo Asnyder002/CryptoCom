@@ -5,6 +5,8 @@
  */
 package clientUI;
 
+import cryptocomclient.CryptoComClient;
+
 /**
  *
  * @author codbo
@@ -28,14 +30,14 @@ public class ClientPresenter {
     }
     
     public void send(){
-        String message = myUI.getMessageText();
-        String recipient = myUI.getRecipientText();
+        String message = clientView.getMessageText();
+        String recipient = clientView.getRecipientText();
     }
     
     public void login() {
         String input;
-        input = myUI.getLoginText();
-        myUI.setLoginText(input);
+        input = clientView.getLoginText();
+        clientView.setLoginText(input);
     }
     
     public void clear() {
