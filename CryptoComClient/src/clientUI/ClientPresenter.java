@@ -6,6 +6,8 @@
 package clientUI;
 
 import cryptocomclient.CryptoComClient;
+import cryptocomclient.Message;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -22,16 +24,19 @@ public class ClientPresenter {
     }
     
     public void displayListOfUnreadMessages() {
-        
+        for (int i = 0; i < clientModel.getRecievedMessageList().size(); i++) {
+            clientView.getJTable().setValueAt(clientModel.openMessage(i).getSender(), 0, i);
+        }
     }
     
     public void displayCertainMessage(int number){
-        
+        clientView.setMessageText(clientModel.openMessage(number).getMemo());
+        //clientView.setRecipientText(clientModel.openMessage(number).getSender());
     }
     
-    public void send(){
-        String message = clientView.getMessageText();
-        String recipient = clientView.getRecipientText();
+    public void send() throws RemoteException{
+        Message message = clientModel.createNewMessage(clientView.getMessageText(),clientModel.getUserName(),clientView.getRecipientText());
+        clientModel.sendMessage(message);
     }
     
     // Calls clientView.getLoginText() to get the username in the textfield

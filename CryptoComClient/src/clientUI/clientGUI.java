@@ -5,7 +5,13 @@
  */
 package clientUI;
 
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -71,6 +77,7 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
         loginTextField = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
         loginStatusLabel = new javax.swing.JLabel();
+        displayMessageButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,17 +105,40 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
                 return types [columnIndex];
             }
         });
+        unreadMessagesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(unreadMessagesTable);
 
         recipientTextField.setText("Recipient");
 
         sendButton.setText("Send");
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
 
         clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         loginButton.setText("Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         loginStatusLabel.setText("Not currently logged in.");
+
+        displayMessageButton.setText("Display Message");
+        displayMessageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayMessageButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,16 +157,20 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
                             .addComponent(loginStatusLabel))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(sendButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(clearButton))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(loginButton)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(loginButton)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(sendButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(clearButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(201, 201, 201)
+                        .addComponent(displayMessageButton)
+                        .addGap(30, 30, 30)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -150,7 +184,8 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(recipientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendButton)
-                    .addComponent(clearButton))
+                    .addComponent(clearButton)
+                    .addComponent(displayMessageButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,6 +197,27 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        presenter.login();
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+        try {
+            presenter.send();
+        } catch (RemoteException ex) {
+            Logger.getLogger(clientGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_sendButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        presenter.clear();
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void displayMessageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayMessageButtonActionPerformed
+        presenter.displayCertainMessage(unreadMessagesTable.getSelectedRow());
+    }//GEN-LAST:event_displayMessageButtonActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -199,6 +255,7 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearButton;
+    private javax.swing.JButton displayMessageButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton loginButton;
