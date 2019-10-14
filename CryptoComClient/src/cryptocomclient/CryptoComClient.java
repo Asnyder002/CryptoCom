@@ -58,6 +58,7 @@ public class CryptoComClient {
     }
     
     
+    
     // Getters and setters for fields listed at the top
     public ArrayList<Message> getRecievedMessageList() {return receivedMessageList;}
     
