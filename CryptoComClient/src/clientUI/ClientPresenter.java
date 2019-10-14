@@ -34,10 +34,11 @@ public class ClientPresenter {
         String recipient = clientView.getRecipientText();
     }
     
+    // Calls clientView.getLoginText() to get the username in the textfield
+    // then calls the clients setUserName() to take that text and set it to the
+    // client
     public void login() {
-        String input;
-        input = clientView.getLoginText();
-        clientView.setLoginText(input);
+        clientModel.setUserName(clientView.getLoginText());
     }
     
     public void clear() {
