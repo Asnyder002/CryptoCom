@@ -11,13 +11,12 @@ import javax.swing.JTable;
  *
  * @author codbo
  */
-public class clientGUI extends javax.swing.JFrame implements IClient {
+public class ClientGui extends javax.swing.JFrame implements IClient {
 
     /**
      * Creates new form clientGUI
      */
-    public clientGUI(ClientPresenter presenter) {
-        this.presenter = presenter;
+    public ClientGui() {
         initComponents();
     }
     
@@ -50,6 +49,10 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
     @Override
     public JTable getJTable() {
         return this.unreadMessagesTable;
+    }
+    
+    public void setPresenter(ClientPresenter presenter) {
+        this.presenter = presenter;
     }
 
     /**
@@ -179,14 +182,15 @@ public class clientGUI extends javax.swing.JFrame implements IClient {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(clientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(clientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(clientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(clientGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClientGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

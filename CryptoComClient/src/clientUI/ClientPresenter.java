@@ -12,7 +12,6 @@ import cryptocomclient.CryptoComClient;
  * @author codbo
  */
 public class ClientPresenter {
-    clientGUI myUI = new clientGUI(this);
     CryptoComClient clientModel;
     IClient clientView;
     

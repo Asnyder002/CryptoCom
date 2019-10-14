@@ -1,6 +1,8 @@
 package cryptocomclient;
 
 import RemoteObject.CryptoComManager;
+import clientUI.ClientGui;
+import clientUI.ClientPresenter;
 import java.rmi.*;
 
 public class CryptoCom {
@@ -14,9 +16,13 @@ public class CryptoCom {
         // Passes the remote object into the client for use
         CryptoComClient client = new CryptoComClient(ccm);
         
-        // Create the presenter and pass in the client
+
+        ClientGui clientGui = new ClientGui();
+        ClientPresenter presenter = new ClientPresenter(client, clientGui);
+        clientGui.setPresenter(presenter);
         
-        // Create the GUI form and pass in the presenter
+
+        
         
     }
     
