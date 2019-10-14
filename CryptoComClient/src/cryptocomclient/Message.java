@@ -1,5 +1,7 @@
 package cryptocomclient;
 
+import java.util.Objects;
+
 public class Message {
     
     String memo,
@@ -10,6 +12,35 @@ public class Message {
         this.memo = memo;
         this.sender = sender;
         this.recipient = recipient;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        
+        if(o == this) {return true;}
+        
+        if(!(o instanceof Message)) {return false;}
+        
+        Message otherMessage = (Message)o;
+        
+        if(this.memo == otherMessage.memo &&
+           this.sender == otherMessage.sender &&
+           this.recipient == otherMessage.recipient) 
+        {
+            return true;
+        }
+        
+        return false;
+        
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.memo);
+        hash = 41 * hash + Objects.hashCode(this.sender);
+        hash = 41 * hash + Objects.hashCode(this.recipient);
+        return hash;
     }
     
     public String getMemo() {return memo;}
