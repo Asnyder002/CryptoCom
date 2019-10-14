@@ -46,6 +46,6 @@ public class ClientPresenter {
     }
     
     public void clear() {
-        myUI.setMessageText("");
+        clientView.setMessageText("");
     }
 }

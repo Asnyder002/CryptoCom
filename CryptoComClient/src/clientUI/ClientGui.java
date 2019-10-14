@@ -9,9 +9,7 @@ import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+
 
 /**
  *
@@ -208,7 +206,7 @@ public class ClientGui extends javax.swing.JFrame implements IClient {
         try {
             presenter.send();
         } catch (RemoteException ex) {
-            Logger.getLogger(clientGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClientGui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_sendButtonActionPerformed
 
@@ -246,6 +244,12 @@ public class ClientGui extends javax.swing.JFrame implements IClient {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClientGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
