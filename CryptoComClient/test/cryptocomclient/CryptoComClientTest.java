@@ -1,5 +1,8 @@
 package cryptocomclient;
 
+import RemoteObject.CryptoComManager;
+import RemoteObject.CryptoComManagerImpl;
+import java.rmi.RemoteException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,9 +15,15 @@ public class CryptoComClientTest {
      * Test of createNewMessage method, of class CryptoComClient.
      */
     @Test
-    public void testCreateNewMessage() {
+    public void testCreateNewMessage() throws RemoteException {
         
+        CryptoComManager ccm = new CryptoComManagerImpl();
+        CryptoComClient ccc = new CryptoComClient(ccm);
         
+        Message expected = new Message("Hello sir!", "Adam", "Bob");
+        Message actual = ccc.createNewMessage("Hello sir!", "Adam", "Bob");
+        
+        assertEquals(expected, actual);
         
     }
 
