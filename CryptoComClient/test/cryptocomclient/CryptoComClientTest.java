@@ -60,8 +60,9 @@ public class CryptoComClientTest {
         Message expected = new Message("Hello Sir!", "Adam", "Bob");
         
         ccc.sendMessage(expected);
+        ccc.setUserName("Bob");
         ccc.getReceivedMessages();
-        Message actual = ccc.openMessage(1);
+        Message actual = ccc.openMessage(0);
         
         assertEquals(expected, actual);
         
