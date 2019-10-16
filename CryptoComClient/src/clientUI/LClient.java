@@ -12,4 +12,5 @@ package clientUI;
 public interface LClient {
     String getLoginText();
     void setVisibility();
+    void setLoginText(String login);
 }

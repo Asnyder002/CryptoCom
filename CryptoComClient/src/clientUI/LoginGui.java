@@ -89,6 +89,10 @@ public class LoginGui extends javax.swing.JFrame implements LClient {
     public String getLoginText() {
         return loginTextField.getText();
     }
+    @Override
+    public void setLoginText(String login) {
+        loginTextField.setText(login);
+    }
     public void setPresenter(ClientPresenter presenter) {
         this.presenter = presenter;
     }

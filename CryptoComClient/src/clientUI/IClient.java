@@ -13,6 +13,7 @@ import javax.swing.JTable;
  */
 public interface IClient {
     String getLoginText();
+    String getLoginLabelText();
     void setVisibility();
     void setLoginText(String name);
     String getRecipientText();

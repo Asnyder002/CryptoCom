@@ -14,6 +14,10 @@ public class CryptoComClient {
     public CryptoComClient(CryptoComManager ccm) {
         this.ccm = ccm;
     }
+    //Constructor that takes no remote object reference (for testing)
+    public CryptoComClient(){
+        
+    }
     
     // Creates a new instance of Message and returns it.
     public Message createNewMessage(String memo, String sender, String recipient) {
@@ -37,6 +41,7 @@ public class CryptoComClient {
         ccm.sendMessageToServer(message);
         
     }
+    
     
     // Calls the remote object to get the stored messages then adds them to the
     // clients receivedMessageList
