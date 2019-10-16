@@ -7,6 +7,7 @@ import java.rmi.*;
 
 public class CryptoCom {
     
+    
     public static void main(String[] args) {
         
         // Gets the remote object reference from RemoteObjectConnection
@@ -20,6 +21,7 @@ public class CryptoCom {
         ClientGui clientGui = new ClientGui();
         ClientPresenter presenter = new ClientPresenter(client, clientGui);
         clientGui.setPresenter(presenter);
+        clientGui.setVisible(true);
         
 
         
