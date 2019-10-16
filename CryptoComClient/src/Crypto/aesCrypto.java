@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package aescrypto;
+package Crypto;
 
 import java.security.SecureRandom;
 import java.util.Scanner;
@@ -19,39 +19,39 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class aesCrypto {
 
-    /**
-     * @param args the command line arguments
-     * @throws java.lang.Exception
-     */
-    public static void main(String[] args)throws Exception {
-     
-        // Input
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Message:");
-        String message = sc.nextLine();
-        
-        // Create and Initialize Keygenerator Instance
-        KeyGenerator keyGenerator = KeyGenerator.getInstance ("AES");
-        keyGenerator.init(256);
-        
-        //Generating Symmetric Secret Key
-        SecretKey key = keyGenerator.generateKey();
-        
-        // Initialization Vector
-        byte[] IV = new byte[16];
-        SecureRandom random = new SecureRandom();
-        random.nextBytes(IV);
-        
-        // Output
-        System.out.println("message:" + message);
-        
-        byte[] cipherText = encrypt(message.getBytes(), key, IV);
-        System.out.println("Encrypted Message :" + cipherText);
-        
-        String decryptMessage = decrypt(cipherText, key, IV);
-        System.out.println("Decrypted Message :" + decryptMessage);
-                       
-    }
+//    /**
+//     * @param args the command line arguments
+//     * @throws java.lang.Exception
+//     */
+//    public static void main(String[] args)throws Exception {
+//     
+//        // Input
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter Message:");
+//        String message = sc.nextLine();
+//        
+//        // Create and Initialize Keygenerator Instance
+//        KeyGenerator keyGenerator = KeyGenerator.getInstance ("AES");
+//        keyGenerator.init(256);
+//        
+//        //Generating Symmetric Secret Key
+//        SecretKey key = keyGenerator.generateKey();
+//        
+//        // Initialization Vector
+//        byte[] IV = new byte[16];
+//        SecureRandom random = new SecureRandom();
+//        random.nextBytes(IV);
+//        
+//        // Output
+//        System.out.println("message:" + message);
+//        
+//        byte[] cipherText = encrypt(message.getBytes(), key, IV);
+//        System.out.println("Encrypted Message :" + cipherText);
+//        
+//        String decryptMessage = decrypt(cipherText, key, IV);
+//        System.out.println("Decrypted Message :" + decryptMessage);
+//                       
+//    }
     
     public static byte[] encrypt(byte[] message, SecretKey key, byte[] IV) throws Exception{
         
