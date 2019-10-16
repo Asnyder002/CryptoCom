@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class CryptoComClient {
     
-    ArrayList<Message> receivedMessageList = new ArrayList<>();
-    String userName;
-    CryptoComManager ccm;
+    private ArrayList<Message> receivedMessageList = new ArrayList<>();
+    private String userName;
+    private CryptoComManager ccm;
     
     // Constructor that takes in a reference to the remote object.
     public CryptoComClient(CryptoComManager ccm) {
@@ -66,6 +66,7 @@ public class CryptoComClient {
     
     // Getters and setters for fields listed at the top
     public ArrayList<Message> getRecievedMessageList() {return receivedMessageList;}
+    public void setReceivedMessageList(ArrayList<Message> recievedMessageList) {this.receivedMessageList = recievedMessageList;} 
     
     public String getUserName() {return userName;}
     public void setUserName(String userName) {this.userName = userName;}
