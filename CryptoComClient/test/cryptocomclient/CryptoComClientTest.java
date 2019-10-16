@@ -53,6 +53,19 @@ public class CryptoComClientTest {
      */
     @Test
     public void testSendMessage() throws Exception {
+        
+        CryptoComManager ccm = new CryptoComManagerImpl();
+        CryptoComClient ccc = new CryptoComClient(ccm);
+        
+        Message expected = new Message("Hello Sir!", "Adam", "Bob");
+        
+        ccc.sendMessage(expected);
+        ccc.getReceivedMessages();
+        Message actual = ccc.openMessage(1);
+        
+        assertEquals(expected, actual);
+        
+        
     }
 
     /**
