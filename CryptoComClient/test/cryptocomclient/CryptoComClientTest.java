@@ -74,6 +74,31 @@ public class CryptoComClientTest {
      */
     @Test
     public void testGetReceivedMessages() throws Exception {
+        
+        CryptoComManager ccm = new CryptoComManagerImpl();
+        CryptoComClient ccc = new CryptoComClient(ccm);
+        
+        ArrayList<Message> testArrayList = new ArrayList<>();
+        testArrayList.add(new Message("Hello sir!", "Adam", "Bob"));
+        testArrayList.add(new Message("Hello dude!", "Adam", "Bob"));
+        testArrayList.add(new Message("Hello man!", "Adam", "Bob"));
+        
+        ccc.setUserName("Bob");
+        
+        ArrayList<Message> expected = testArrayList;
+        
+        for(Message message: testArrayList) {
+            ccc.sendMessage(message);
+        }
+        
+        ccc.getReceivedMessages();
+        
+        ArrayList<Message> actual = ccc.getRecievedMessageList();
+        
+        assertEquals(expected, actual);
+        
+        
+        
     }
 
     /**
