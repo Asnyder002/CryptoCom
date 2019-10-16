@@ -16,10 +16,13 @@ import java.rmi.RemoteException;
 public class ClientPresenter {
     CryptoComClient clientModel;
     IClient clientView;
+    LClient loginView;
     
-    public ClientPresenter(CryptoComClient clientModel, IClient clientView) {
+    public ClientPresenter(CryptoComClient clientModel, IClient clientView, LClient loginView) {
         this.clientView = clientView;
         this.clientModel = clientModel;
+        this.loginView = loginView;
+        
     }
     
     public void displayListOfUnreadMessages() {
@@ -42,10 +45,16 @@ public class ClientPresenter {
     // then calls the clients setUserName() to take that text and set it to the
     // client
     public void login() {
-        clientModel.setUserName(clientView.getLoginText());
+        clientModel.setUserName(loginView.getLoginText());
+        loginView.setVisibility();
+        clientView.setVisibility();
+        clientView.setLoginText(clientModel.getUserName());
     }
     
     public void clear() {
         clientView.setMessageText("");
+        
     }
+    
+    
 }

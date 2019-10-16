@@ -5,19 +5,11 @@
  */
 package clientUI;
 
-import javax.swing.JTable;
-
 /**
  *
  * @author codbo
  */
-public interface IClient {
+public interface LClient {
     String getLoginText();
     void setVisibility();
-    void setLoginText(String name);
-    String getRecipientText();
-    void setRecipientText(String name);
-    String getMessageText();
-    void setMessageText(String message); 
-    JTable getJTable();
 }
