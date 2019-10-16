@@ -1,12 +1,13 @@
 package cryptocomclient;
 
 import RemoteObject.CryptoComManager;
-import clientUI.ClientGui;
+import clientUI.clientGui;
 import clientUI.ClientPresenter;
 import clientUI.LoginGui;
 import java.rmi.*;
 
 public class CryptoCom {
+    
     
     public static void main(String[] args) {
         
@@ -19,12 +20,13 @@ public class CryptoCom {
         
         LoginGui loginGui = new LoginGui();
         loginGui.setVisible(true);
-        ClientGui clientGui = new ClientGui();
+        clientGui clientGui = new clientGui();
         
         
         ClientPresenter presenter = new ClientPresenter(client, clientGui, loginGui);
         clientGui.setPresenter(presenter);
         loginGui.setPresenter(presenter);
+
         
 
         
