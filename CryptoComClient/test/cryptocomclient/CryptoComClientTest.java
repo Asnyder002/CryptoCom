@@ -3,6 +3,7 @@ package cryptocomclient;
 import RemoteObject.CryptoComManager;
 import RemoteObject.CryptoComManagerImpl;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,6 +33,19 @@ public class CryptoComClientTest {
      */
     @Test
     public void testOpenMessage() {
+        
+        ArrayList<Message> testArrayList = new ArrayList<>();
+        testArrayList.add(new Message("Hello sir!", "Adam", "Bob"));
+        testArrayList.add(new Message("Hello dude!", "Adam", "Bob"));
+        testArrayList.add(new Message("Hello man!", "Adam", "Bob"));
+        
+        CryptoComClient ccc = new CryptoComClient();
+        
+        Message expected = testArrayList.get(2);
+        ccc.setReceivedMessageList(testArrayList);
+        Message actual = ccc.openMessage(2);
+        
+        assertEquals(expected, actual);
     }
 
     /**
