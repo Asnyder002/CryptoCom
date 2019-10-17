@@ -101,6 +101,27 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                 {null},
                 {null},
                 {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
                 {null}
             },
             new String [] {
@@ -110,13 +131,24 @@ public class clientGui extends javax.swing.JFrame implements IClient {
             Class[] types = new Class [] {
                 java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
+        unreadMessagesTable.setColumnSelectionAllowed(true);
+        unreadMessagesTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         unreadMessagesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        unreadMessagesTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(unreadMessagesTable);
+        unreadMessagesTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         recipientTextField.setText("Recipient");
 
@@ -178,8 +210,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                                 .addGap(53, 53, 53)
                                 .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(loginButton)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(loginButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(sendButton)
@@ -187,9 +218,9 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                                 .addComponent(clearButton)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(displayMessageButton)
-                            .addComponent(refreshButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55))))
+                            .addComponent(refreshButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(displayMessageButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(49, 49, 49))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

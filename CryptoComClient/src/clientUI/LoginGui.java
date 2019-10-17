@@ -43,7 +43,6 @@ public class LoginGui extends javax.swing.JFrame implements LClient {
             }
         });
 
-        loginTextField.setText("Username...");
         loginTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginTextFieldActionPerformed(evt);

@@ -8,6 +8,7 @@ package clientUI;
 import cryptocomclient.CryptoComClient;
 import cryptocomclient.Message;
 import java.rmi.RemoteException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,14 +46,22 @@ public class ClientPresenter {
     // then calls the clients setUserName() to take that text and set it to the
     // client
     public void login() {
-        clientModel.setUserName(loginView.getLoginText());
+        String input = loginView.getLoginText();
+        if (input.trim().length() > 0) {
+        clientModel.setUserName(input);    
         loginView.setVisibility();
         clientView.setVisibility();
-        clientView.setLoginText(clientModel.getUserName());
+        clientView.setLoginText(clientModel.getUserName());        
+        }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(null, "Please ensure username field is populated", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
     
     public void clear() {
         clientView.setMessageText("");
+        clientView.getJTable().setValueAt("Test", 0, 0);
         
     }
     
