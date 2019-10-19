@@ -31,6 +31,10 @@ public class CryptoComClient {
     // Returns a message from the recived arrayList at the specified index.
     public Message openMessage(int index) {
         
+        if (receivedMessageList.size() == 0) {
+            return null;
+        }
+        
         return receivedMessageList.get(index);
         
     }
