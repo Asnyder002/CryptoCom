@@ -106,6 +106,20 @@ public class CryptoComClientTest {
      */
     @Test
     public void testRemoveReceivedMessage() {
+        
+        CryptoComClient ccc = new CryptoComClient();
+        
+        ArrayList<Message> testList = new ArrayList<>();
+        Message testMessage = new Message("hello", "bob", "Adam");
+        testList.add(testMessage);
+        
+        ccc.setReceivedMessageList(testList);
+        ccc.removeReceivedMessage(testMessage);
+        
+        Message expected = null;
+        Message actual = ccc.openMessage(0);
+        
+        assertEquals(expected, actual);
     }
 
     /**
