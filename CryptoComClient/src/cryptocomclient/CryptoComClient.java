@@ -1,5 +1,6 @@
 package cryptocomclient;
 
+import RemoteObject.Message;
 import RemoteObject.CryptoComManager;
 import java.rmi.RemoteException;
 import java.util.ArrayList;

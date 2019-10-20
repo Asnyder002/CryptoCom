@@ -1,4 +1,4 @@
-package cryptocomclient;
+package RemoteObject;
 
 import java.io.Serializable;
 import java.util.Objects;

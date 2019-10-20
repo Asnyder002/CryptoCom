@@ -1,6 +1,5 @@
 package RemoteObject;
 
-import cryptocomclient.Message;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.Test;

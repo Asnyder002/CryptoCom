@@ -1,6 +1,5 @@
 package RemoteObject;
 
-import cryptocomclient.Message;
 import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.HashMap;
 public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoComManager{
 
     private HashMap<String, ArrayList<Message>> messageMap = new HashMap<>();
-    private ArrayList<String> testArrayList = new ArrayList<>();
     
     public CryptoComManagerImpl() throws RemoteException{
         super();
@@ -39,16 +37,5 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
     }
     
     public HashMap<String, ArrayList<Message>> getHashMap() {return messageMap;}
-    
-    @Override
-    public void sendTestString(String string) throws RemoteException {
-        testArrayList.add(string);
-    }
-
-    @Override
-    public String getTestString() throws RemoteException {
-        return testArrayList.get(0);
-    }
-    
     
 }

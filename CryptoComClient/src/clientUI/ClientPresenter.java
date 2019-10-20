@@ -6,7 +6,7 @@
 package clientUI;
 
 import cryptocomclient.CryptoComClient;
-import cryptocomclient.Message;
+import RemoteObject.Message;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
@@ -26,7 +26,9 @@ public class ClientPresenter {
         
     }
     
-    public void displayListOfUnreadMessages() {
+    public void displayListOfUnreadMessages() throws RemoteException {
+        clientModel.getReceivedMessages();
+        
         for (int i = 0; i < clientModel.getRecievedMessageList().size(); i++) {
             clientView.getJTable().setValueAt(clientModel.openMessage(i).getSender(), 0, i);
         }

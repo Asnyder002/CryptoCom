@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import cryptocomclient.CryptoComClient;
-import cryptocomclient.Message;
+import RemoteObject.Message;
 import java.rmi.RemoteException;
 
 import cryptocomclient.CryptoCom;
