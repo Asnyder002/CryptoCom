@@ -5,6 +5,7 @@ import clientUI.clientGui;
 import clientUI.ClientPresenter;
 import clientUI.LoginGui;
 import java.rmi.*;
+import java.util.ArrayList;
 
 public class CryptoCom {
     
@@ -29,7 +30,7 @@ public class CryptoCom {
         System.out.println("All systems good to go!");
         
         
-        // Testing
+        // Testing - Works
         System.out.println("Sending Test String...");
         ccm.sendTestString("TEST STRING!!!!");
         System.out.println("Test String Sent.");
@@ -37,6 +38,11 @@ public class CryptoCom {
         String string = ccm.getTestString();
         System.out.println("Got Test String!");
         System.out.println(string);
+        
+        // Different Test - Doesn't Work
+        ccm.sendMessageToServer(new Message("MESSAGE TEST!!", "Adam", "Bob"));
+        ArrayList<Message> testArrayList = ccm.receiveMessagesFromServer("Bob");
+        System.out.println(testArrayList.get(0).memo);
 
         
 
