@@ -20,6 +20,7 @@ public class RemoteObjectConnection {
     private void pullFromRegistry() {
         try {
             ccm = (CryptoComManager)Naming.lookup(CryptoComManager.LOOKUPNAME);
+            System.out.println("Remote object pulled from registry.");
         }
         catch (Exception e) {
             System.err.println("CrytpoComCilent: CryptoComManager exception: " + e.getMessage());

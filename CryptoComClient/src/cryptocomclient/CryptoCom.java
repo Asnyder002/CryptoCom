@@ -26,6 +26,7 @@ public class CryptoCom {
         ClientPresenter presenter = new ClientPresenter(client, clientGui, loginGui);
         clientGui.setPresenter(presenter);
         loginGui.setPresenter(presenter);
+        System.out.println("All systems good to go!");
 
         
 
