@@ -1,8 +1,9 @@
 package cryptocomclient;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Message {
+public class Message implements Serializable{
     
     String memo,
            sender,
