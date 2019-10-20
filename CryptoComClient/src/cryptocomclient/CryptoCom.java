@@ -9,7 +9,7 @@ import java.rmi.*;
 public class CryptoCom {
     
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         
         // Gets the remote object reference from RemoteObjectConnection
         RemoteObjectConnection netConn = new RemoteObjectConnection();
@@ -27,6 +27,16 @@ public class CryptoCom {
         clientGui.setPresenter(presenter);
         loginGui.setPresenter(presenter);
         System.out.println("All systems good to go!");
+        
+        
+        // Testing
+        System.out.println("Sending Test String...");
+        ccm.sendTestString("TEST STRING!!!!");
+        System.out.println("Test String Sent.");
+        System.out.println("Getting Test String...");
+        String string = ccm.getTestString();
+        System.out.println("Got Test String!");
+        System.out.println(string);
 
         
 

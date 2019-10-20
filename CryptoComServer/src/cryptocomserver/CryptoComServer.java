@@ -23,7 +23,6 @@ public class CryptoComServer {
         try {
             // Creates instance of CryptoComManagerImpl object
             CryptoComManagerImpl ccm = new CryptoComManagerImpl();
-            
             System.out.println("Publishing CryptoComServer...");
             
             // Binds the object to the registry using the LOOKUPNAME
