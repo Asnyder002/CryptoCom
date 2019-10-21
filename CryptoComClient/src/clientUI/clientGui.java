@@ -271,7 +271,11 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     }//GEN-LAST:event_displayMessageButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        presenter.displayListOfUnreadMessages();
+        try {
+            presenter.displayListOfUnreadMessages();
+        } catch (RemoteException ex) {
+            Logger.getLogger(clientGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     

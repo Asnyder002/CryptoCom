@@ -42,6 +42,7 @@ public class ClientPresenter {
     public void send() throws RemoteException{
         Message message = clientModel.createNewMessage(clientView.getMessageText(),clientModel.getUserName(),clientView.getRecipientText());
         clientModel.sendMessage(message);
+        this.clear();
     }
     
     // Calls clientView.getLoginText() to get the username in the textfield
@@ -63,6 +64,7 @@ public class ClientPresenter {
     
     public void clear() {
         clientView.setMessageText("");
+        clientView.setRecipientText("");
         clientView.getJTable().setValueAt("Test", 0, 0);
         
     }
