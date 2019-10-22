@@ -9,6 +9,7 @@ import cryptocomclient.CryptoComClient;
 import RemoteObject.Message;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,11 +28,20 @@ public class ClientPresenter {
     }
     
     public void displayListOfUnreadMessages() throws RemoteException {
+        //Message testMessage1 = new Message("test1", "test2", "test3");
+        //Message testMessage2 = new Message("test4", "test5", "test6");
+        
+        //ArrayList<Message> testMessageList = new ArrayList();
+        //testMessageList.add(testMessage1);
+        //testMessageList.add(testMessage2);
+        //clientModel.setReceivedMessageList(testMessageList);
+        //System.out.println(clientModel.getRecievedMessageList().get(0).getSender());
         clientModel.getReceivedMessages();
         
         for (int i = 0; i < clientModel.getRecievedMessageList().size(); i++) {
-            clientView.getJTable().setValueAt(clientModel.openMessage(i).getSender(), 0, i);
+            clientView.getJTable().setValueAt(clientModel.getRecievedMessageList().get(i).getSender(), i, 0);
         }
+        
     }
     
     public void displayCertainMessage(int number){
@@ -66,6 +76,7 @@ public class ClientPresenter {
     public void clear() {
         clientView.setMessageText("");
         clientView.setRecipientText("");
+        
         
     }
     
