@@ -29,10 +29,12 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
 
     @Override
     public ArrayList<Message> receiveMessagesFromServer(String userName) throws RemoteException {
-        
-        ArrayList<Message> arrayListToSendBack = messageMap.get(userName);
-        messageMap.remove(arrayListToSendBack);
-        return arrayListToSendBack;
+        if(messageMap.containsKey(userName)) {
+            ArrayList<Message> arrayListToSendBack = messageMap.get(userName);
+            messageMap.remove(arrayListToSendBack);
+            return arrayListToSendBack;
+        }
+        return new ArrayList<Message>();
         
     }
     
