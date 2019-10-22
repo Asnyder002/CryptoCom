@@ -8,6 +8,7 @@ package clientUI;
 import cryptocomclient.CryptoComClient;
 import RemoteObject.Message;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,7 +55,7 @@ public class ClientPresenter {
         clientModel.setUserName(input);    
         loginView.setVisibility();
         clientView.setVisibility();
-        this.displayListOfUnreadMessages();
+        //this.displayListOfUnreadMessages();
         clientView.setLoginText(clientModel.getUserName());        
         }
         else {
