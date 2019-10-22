@@ -250,7 +250,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        presenter.login();
+        //presenter.login();
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed

@@ -48,12 +48,13 @@ public class ClientPresenter {
     // Calls clientView.getLoginText() to get the username in the textfield
     // then calls the clients setUserName() to take that text and set it to the
     // client
-    public void login() {
+    public void login() throws RemoteException {
         String input = loginView.getLoginText();
         if (input.trim().length() > 0) {
         clientModel.setUserName(input);    
         loginView.setVisibility();
         clientView.setVisibility();
+        this.displayListOfUnreadMessages();
         clientView.setLoginText(clientModel.getUserName());        
         }
         else {

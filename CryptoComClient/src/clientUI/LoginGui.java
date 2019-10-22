@@ -5,6 +5,10 @@
  */
 package clientUI;
 
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author codbo
@@ -78,7 +82,11 @@ public class LoginGui extends javax.swing.JFrame implements LClient {
     }//GEN-LAST:event_loginTextFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        presenter.login();
+        try {
+            presenter.login();
+        } catch (RemoteException ex) {
+            Logger.getLogger(LoginGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
     @Override
     public void setVisibility() {
