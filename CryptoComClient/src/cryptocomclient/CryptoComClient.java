@@ -60,6 +60,7 @@ public class CryptoComClient {
         for(Message message: receivedList) {
             receivedMessageList.add(message);
         }
+        System.out.println("RECEIVED MESSAGE SIZE:" + receivedMessageList.size());
       
     }
     
