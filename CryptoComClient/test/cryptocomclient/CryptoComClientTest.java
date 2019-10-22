@@ -115,7 +115,7 @@ public class CryptoComClientTest {
         testList.add(testMessage);
         
         ccc.setReceivedMessageList(testList);
-        ccc.removeReceivedMessage(testMessage);
+        ccc.removeReceivedMessage(1);
         
         Message expected = null;
         Message actual = ccc.openMessage(0);
