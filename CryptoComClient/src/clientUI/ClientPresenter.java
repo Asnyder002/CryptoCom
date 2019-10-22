@@ -66,7 +66,6 @@ public class ClientPresenter {
     public void clear() {
         clientView.setMessageText("");
         clientView.setRecipientText("");
-        clientView.getJTable().setValueAt("Test", 0, 0);
         
     }
     

@@ -61,9 +61,9 @@ public class CryptoComClient {
     }
     
     // Removes a message from the received message arrayList
-    public void removeReceivedMessage(Message message) {
+    public void removeReceivedMessage(int i) {
         
-        receivedMessageList.remove(message);
+        receivedMessageList.remove(i);
         
     }
     
