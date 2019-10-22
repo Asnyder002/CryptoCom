@@ -36,7 +36,10 @@ public class CryptoComClient {
             return null;
         }
         
-        return receivedMessageList.get(index);
+        Message openMessage = receivedMessageList.get(index);
+        receivedMessageList.remove(index);
+        
+        return openMessage;
         
     }
     
