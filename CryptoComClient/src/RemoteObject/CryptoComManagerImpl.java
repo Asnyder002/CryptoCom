@@ -4,11 +4,12 @@ import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoComManager{
 
-    private Map<String, ArrayList<Message>> messageMap = new HashMap<>();
+    private Map<String, List<Message>> messageMap = new HashMap<>();
     
     public CryptoComManagerImpl() throws RemoteException{
         super();
@@ -24,21 +25,21 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         }
         
         // Gets the recipients Arraylist and adds the new message
-        ArrayList<Message> recipientArrayList = messageMap.get(message.getRecipient());
+        List<Message> recipientArrayList = messageMap.get(message.getRecipient());
         recipientArrayList.add(message);
     }
 
     @Override
-    public ArrayList<Message> receiveMessagesFromServer(String userName) throws RemoteException {
+    public List<Message> receiveMessagesFromServer(String userName) throws RemoteException {
         if(messageMap.containsKey(userName)) {
-            ArrayList<Message> arrayListToSendBack = messageMap.get(userName);
-            messageMap.remove(arrayListToSendBack);
+            List<Message> arrayListToSendBack = messageMap.get(userName);
+            messageMap.remove(userName);
             return arrayListToSendBack;
         }
         return new ArrayList<Message>();
         
     }
     
-    public Map<String, ArrayList<Message>> getHashMap() {return messageMap;}
+    public Map<String, List<Message>> getHashMap() {return messageMap;}
     
 }

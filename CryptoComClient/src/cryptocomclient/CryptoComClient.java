@@ -4,10 +4,11 @@ import RemoteObject.Message;
 import RemoteObject.CryptoComManager;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CryptoComClient {
     
-    private ArrayList<Message> receivedMessageList = new ArrayList<>();
+    private List<Message> receivedMessageList = new ArrayList<>();
     private String userName;
     private CryptoComManager ccm;
     
@@ -55,7 +56,7 @@ public class CryptoComClient {
     // clients receivedMessageList
     public void getReceivedMessages() throws RemoteException {
         
-        ArrayList<Message> receivedList = ccm.receiveMessagesFromServer(userName);
+        List<Message> receivedList = ccm.receiveMessagesFromServer(userName);
         
         for(Message message: receivedList) {
             receivedMessageList.add(message);
@@ -74,7 +75,7 @@ public class CryptoComClient {
     
     
     // Getters and setters for fields listed at the top
-    public ArrayList<Message> getRecievedMessageList() {return receivedMessageList;}
+    public List<Message> getRecievedMessageList() {return receivedMessageList;}
     public void setReceivedMessageList(ArrayList<Message> recievedMessageList) {this.receivedMessageList = recievedMessageList;} 
     
     public String getUserName() {return userName;}
