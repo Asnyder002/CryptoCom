@@ -4,10 +4,11 @@ import java.rmi.*;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoComManager{
 
-    private HashMap<String, ArrayList<Message>> messageMap = new HashMap<>();
+    private Map<String, ArrayList<Message>> messageMap = new HashMap<>();
     
     public CryptoComManagerImpl() throws RemoteException{
         super();
@@ -38,6 +39,6 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         
     }
     
-    public HashMap<String, ArrayList<Message>> getHashMap() {return messageMap;}
+    public Map<String, ArrayList<Message>> getHashMap() {return messageMap;}
     
 }
