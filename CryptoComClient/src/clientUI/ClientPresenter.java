@@ -10,6 +10,8 @@ import RemoteObject.Message;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,12 +33,19 @@ public class ClientPresenter {
 
         clientModel.getReceivedMessages();
         
-        for (int i = 0; i < clientModel.getRecievedMessageList().size(); i++) {
-            clientView.getJTable().setValueAt(clientModel.getRecievedMessageList().get(i).getSender(), i, 0);
-        }  
+        DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
+
+        Object rowData[] = new Object[1];
+        
+        for(int i = 0; i < clientModel.getRecievedMessageList().size(); i++) {
+            rowData[0] = clientModel.getRecievedMessageList().get(i).getSender();
+            model.addRow(rowData);
+        }
     }
     
     public void displayCertainMessage(int number){
+        DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
+        model.removeRow(number);
         clientView.setMessageText(clientModel.openMessage(number).getMemo());
         //clientView.setRecipientText(clientModel.openMessage(number).getSender());
     }
@@ -70,5 +79,5 @@ public class ClientPresenter {
         clientView.setRecipientText("");
         
     }
-       
+    
 }
