@@ -33,8 +33,7 @@ public class ClientPresenter {
         
         for (int i = 0; i < clientModel.getRecievedMessageList().size(); i++) {
             clientView.getJTable().setValueAt(clientModel.getRecievedMessageList().get(i).getSender(), i, 0);
-        }
-        
+        }  
     }
     
     public void displayCertainMessage(int number){
