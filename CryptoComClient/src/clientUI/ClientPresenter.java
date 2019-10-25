@@ -28,14 +28,7 @@ public class ClientPresenter {
     }
     
     public void displayListOfUnreadMessages() throws RemoteException {
-        //Message testMessage1 = new Message("test1", "test2", "test3");
-        //Message testMessage2 = new Message("test4", "test5", "test6");
-        
-        //ArrayList<Message> testMessageList = new ArrayList();
-        //testMessageList.add(testMessage1);
-        //testMessageList.add(testMessage2);
-        //clientModel.setReceivedMessageList(testMessageList);
-        //System.out.println(clientModel.getRecievedMessageList().get(0).getSender());
+
         clientModel.getReceivedMessages();
         
         for (int i = 0; i < clientModel.getRecievedMessageList().size(); i++) {
