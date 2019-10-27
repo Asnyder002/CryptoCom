@@ -47,7 +47,6 @@ public class ClientPresenter {
         DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
         model.removeRow(number);
         clientView.setMessageText(clientModel.openMessage(number).getMemo());
-        //clientView.setRecipientText(clientModel.openMessage(number).getSender());
     }
     
     public void send() throws RemoteException{
@@ -65,7 +64,7 @@ public class ClientPresenter {
         clientModel.setUserName(input);    
         loginView.setVisibility();
         clientView.setVisibility();
-        //this.displayListOfUnreadMessages();
+        this.displayListOfUnreadMessages();
         clientView.setLoginText(clientModel.getUserName());        
         }
         else {
