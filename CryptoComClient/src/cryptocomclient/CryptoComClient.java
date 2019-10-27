@@ -76,7 +76,7 @@ public class CryptoComClient {
     
     // Getters and setters for fields listed at the top
     public List<Message> getRecievedMessageList() {return receivedMessageList;}
-    public void setReceivedMessageList(ArrayList<Message> recievedMessageList) {this.receivedMessageList = recievedMessageList;} 
+    public void setReceivedMessageList(List<Message> recievedMessageList) {this.receivedMessageList = recievedMessageList;} 
     
     public String getUserName() {return userName;}
     public void setUserName(String userName) {this.userName = userName;}

@@ -52,7 +52,7 @@ public class ClientPresentertest {
         
         Message testMessage = new Message("Hello there!","Alex","Joe");
         client.getRecievedMessageList().add(testMessage);
-        presenter.displayListOfUnreadMessages();
+        //presenter.displayListOfUnreadMessages();
         String name = (String) presenter.clientView.getJTable().getValueAt(0,0);
         
         assertEquals(testMessage.getSender(),name);
@@ -93,7 +93,7 @@ public class ClientPresentertest {
         clientGui.setPresenter(presenter);
         
         presenter.loginView.setLoginText("Alex");
-        presenter.login();
+        //presenter.login();
         String username = presenter.clientView.getLoginLabelText();
         assertEquals(("Currently logged in as:" + "Alex"),username);
         

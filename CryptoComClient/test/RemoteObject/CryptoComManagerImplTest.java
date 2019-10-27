@@ -2,6 +2,8 @@ package RemoteObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,6 +14,7 @@ public class CryptoComManagerImplTest {
 
     /**
      * Test of sendMessageToServer method, of class CryptoComManagerImpl.
+     * @throws java.lang.Exception
      */
     @Test
     public void testSendMessageToServer() throws Exception {
@@ -25,8 +28,8 @@ public class CryptoComManagerImplTest {
         // cast from interface to impl object for gethashmap use
         // get hashmap, get arraylist, get message
         CryptoComManagerImpl ccmImpl = (CryptoComManagerImpl)ccm;
-        HashMap<String, ArrayList<Message>> hashMap = ccmImpl.getHashMap();
-        ArrayList<Message> messageList = hashMap.get("Bob");
+        Map<String, List<Message>> hashMap = ccmImpl.getHashMap();
+        List<Message> messageList = hashMap.get("Bob");
         
         Message expected = message;
         Message actual = messageList.get(0);
@@ -36,12 +39,13 @@ public class CryptoComManagerImplTest {
 
     /**
      * Test of receiveMessagesFromServer method, of class CryptoComManagerImpl.
+     * @throws java.lang.Exception
      */
     @Test
     public void testReceiveMessagesFromServer() throws Exception {
         
         // Creates a testList and adds message to the list
-        ArrayList<Message> testList = new ArrayList<>();
+        List<Message> testList = new ArrayList<>();
         Message message1 = new Message("Test", "Adam", "Bob");
         Message message2 = new Message("Testing", "Tom", "Bob");
         testList.add(message1);
@@ -53,8 +57,8 @@ public class CryptoComManagerImplTest {
             ccm.sendMessageToServer(message);
         }
         
-        ArrayList<Message> expected = testList;
-        ArrayList<Message> actual = ccm.receiveMessagesFromServer("Bob");
+        List<Message> expected = testList;
+        List<Message> actual = ccm.receiveMessagesFromServer("Bob");
         
         assertEquals(expected, actual);
     }
