@@ -30,25 +30,6 @@ public class CryptoCom {
         loginGui.setPresenter(presenter);
         System.out.println("All systems good to go!");
         
-        
-//        // Testing - Works
-//        System.out.println("Sending Test String...");
-//        ccm.sendTestString("TEST STRING!!!!");
-//        System.out.println("Test String Sent.");
-//        System.out.println("Getting Test String...");
-//        String string = ccm.getTestString();
-//        System.out.println("Got Test String!");
-//        System.out.println(string);
-//        
-//        // Different Test - Doesn't Work
-//        ccm.sendMessageToServer(new Message("MESSAGE TEST!!", "Adam", "Bob"));
-//        ArrayList<Message> testArrayList = ccm.receiveMessagesFromServer("Bob");
-//        System.out.println(testArrayList.get(0).getMemo());
-
-        
-
-        
-        
     }
     
 }
