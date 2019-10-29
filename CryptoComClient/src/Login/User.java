@@ -10,30 +10,37 @@ import javax.crypto.spec.PBEKeySpec;
 public class User {
     
     private String username;
-    private String password;
     private byte[] salt;
     private byte[] hashedPassword;
-    private final int iteration = 65536;
-    private final int keyLength = 128;
-    private final String algorithm = "PBKDF2WithHmacSHA1";
     
-    public User(String username, String password) {
+    public User(String username, byte[] hashedPassword, byte[] salt) {
         this.username = username;
-        this.password = password;
+        this.hashedPassword = hashedPassword;
+        this.salt = salt;
     }
     
-    public byte[] generateSalt(){
-        SecureRandom random = new SecureRandom();
-        byte[] salt = new byte[16];
-        random.nextBytes(salt);
-        return salt;
+    public String getUsername(){
+        return this.username;
     }
     
-    public byte[] generateHash(String pass) throws NoSuchAlgorithmException, InvalidKeySpecException{
-        KeySpec spec = new PBEKeySpec(pass.toCharArray(), salt, iteration, keyLength);
-        SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm);
-        byte[] hash = factory.generateSecret(spec).getEncoded();
-        return hash;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public byte[] getSalt() {
+        return this.salt;
+    }
+    
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+    
+    public byte[] getHashedPassword() {
+        return this.hashedPassword;
+    }
+    
+    public void setHashedPassword(byte[] hashedPassword) {
+        this.hashedPassword = hashedPassword;
     }
     
     
