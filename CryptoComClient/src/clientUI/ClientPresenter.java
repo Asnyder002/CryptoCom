@@ -34,6 +34,12 @@ public class ClientPresenter {
         clientModel.getReceivedMessages();
         
         DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
+        
+        if(model.getRowCount() > 0) {
+            for(int i = model.getRowCount() -1; i > -1; i--) {
+                model.removeRow(i);
+            }
+        }
 
         Object rowData[] = new Object[1];
         
