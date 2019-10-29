@@ -11,7 +11,7 @@ public class LoginModel {
         // Take the entered password and hash it with the salt
         // Compare both hashes, if they are the same allow access.
         // Otherwise inform that an in correct password was given.
-        
+        return true;
     }
     
     public void createNewUser() {
