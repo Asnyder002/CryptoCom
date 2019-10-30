@@ -1,6 +1,9 @@
 package Login;
 
 import RemoteObject.CryptoComManager;
+import RemoteObject.User;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 public class LoginModel {
     
@@ -21,10 +24,18 @@ public class LoginModel {
         return true;
     }
     
-    public void createNewUser() {
+    public boolean createNewUser() throws NoSuchAlgorithmException, InvalidKeySpecException {
         // Generate random salt
-        // Hash the password with the salt
-        // Store the username, salt, and hashed password on the remote object
+        if(!ccm.usernameTaken(username)) {
+            byte[] salt = PasswordManager.generateSalt();
+            // Hash the password with the salt
+            byte[] hashedPassword = PasswordManager.generateHash(password, salt);
+            // Create new user
+            User user = new User(username, hashedPassword, salt);
+            // Store the username, salt, and hashed password on the remote object
+            ccm.addNewUser(user);
+        }
+        
         
     }
     
