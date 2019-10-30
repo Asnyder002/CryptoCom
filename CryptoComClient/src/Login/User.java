@@ -1,10 +1,14 @@
 package Login;
 
+import RemoteObject.Message;
+import java.util.List;
+
 public class User {
     
     private String username;
     private byte[] salt;
     private byte[] hashedPassword;
+    private List<Message> messageList = new ArrayList<>();
     
     public User(String username, byte[] hashedPassword, byte[] salt) {
         this.username = username;
@@ -36,6 +40,13 @@ public class User {
         this.hashedPassword = hashedPassword;
     }
     
+    public List getMessageList() {
+        return messageList;
+    }
+    
+    public void setMessagesList(List messageList) {
+        this.messageList = messageList;
+    }
     
     
     
