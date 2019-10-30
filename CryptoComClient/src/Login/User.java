@@ -1,9 +1,11 @@
 package Login;
 
 import RemoteObject.Message;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Serializable{
     
     private String username;
     private byte[] salt;
