@@ -1,9 +1,16 @@
 package Login;
 
+import RemoteObject.CryptoComManager;
+
 public class LoginModel {
     
     private String username;
     private String password;
+    private CryptoComManager ccm;
+    
+    public LoginModel(CryptoComManager ccm) {
+        this.ccm = ccm;
+    }
     
     public boolean validateCredentials(){
         // Check username to see if it's registered on the remote object
