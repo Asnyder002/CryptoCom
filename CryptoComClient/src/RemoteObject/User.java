@@ -1,4 +1,4 @@
-package Login;
+package RemoteObject;
 
 import RemoteObject.Message;
 import java.io.Serializable;
