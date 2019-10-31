@@ -66,7 +66,6 @@ public class LoginPresenter {
     loginModel.setPassword(loginView.getPasswordText());
         try {
             if (loginModel.createNewUser()) {
-                loginModel.validateCredentials();
                 setClientVisible();
                 clientModel.setUserName(loginView.getUserNameText());
                 clientPresenter.clientView.setLoginText(loginModel.getUsername());
