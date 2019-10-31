@@ -2,6 +2,7 @@ package Login;
 
 import RemoteObject.CryptoComManager;
 import RemoteObject.User;
+import java.rmi.RemoteException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -15,7 +16,7 @@ public class LoginModel {
         this.ccm = ccm;
     }
     
-    public boolean validateCredentials() throws NoSuchAlgorithmException, InvalidKeySpecException{
+    public boolean validateCredentials() throws InvalidKeySpecException, RemoteException, NoSuchAlgorithmException{
         // Check username to see if it's registered on the remote object
         if(ccm.usernameTaken(username)) {
             // If it is, pull the salt and has from the remote object
@@ -31,7 +32,7 @@ public class LoginModel {
         return false;
     }
     
-    public boolean createNewUser() throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public boolean createNewUser() throws NoSuchAlgorithmException, InvalidKeySpecException, RemoteException {
         // Generate random salt
         if(!ccm.usernameTaken(username)) {
             byte[] salt = PasswordManager.generateSalt();

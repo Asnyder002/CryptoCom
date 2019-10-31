@@ -41,14 +41,17 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         
     }
     
+    @Override
     public void addNewUser(User newUser) throws RemoteException{
         userMap.put(newUser.getUsername(), newUser);
     }
     
+    @Override
     public User getUser(String username) throws RemoteException{
         return userMap.get(username);
     }
     
+    @Override
     public boolean usernameTaken(String username) throws RemoteException{
         return userMap.containsKey(username);
     }
