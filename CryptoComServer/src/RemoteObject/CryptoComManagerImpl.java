@@ -10,6 +10,7 @@ import java.util.Map;
 public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoComManager{
 
     private Map<String, List<Message>> messageMap = new HashMap<>();
+    private Map<String, User> userMap = new HashMap<>();
     
     public CryptoComManagerImpl() throws RemoteException{
         super();
@@ -38,6 +39,18 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         }
         return new ArrayList<Message>();
         
+    }
+    
+    public void addNewUser(User newUser){
+        userMap.put(newUser.getUsername(), newUser);
+    }
+    
+    public User getUser(String username) {
+        return userMap.get(username);
+    }
+    
+    public boolean usernameTaken(String username) {
+        return userMap.containsKey(username);
     }
     
     public Map<String, List<Message>> getHashMap() {return messageMap;}
