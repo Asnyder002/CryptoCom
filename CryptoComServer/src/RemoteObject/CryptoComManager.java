@@ -9,7 +9,7 @@ public interface CryptoComManager extends Remote{
     public final static String LOOKUPNAME = "CryptoComManager";
     public void sendMessageToServer(Message message) throws RemoteException;
     public List<Message> receiveMessagesFromServer(String userName) throws RemoteException;
-    public void addNewUser(User user);
-    public boolean usernameTaken(String username);
-    public User getUser(String username);
+    public void addNewUser(User user) throws RemoteException;
+    public boolean usernameTaken(String username) throws RemoteException;
+    public User getUser(String username) throws RemoteException;
 }
