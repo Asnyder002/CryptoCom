@@ -53,6 +53,7 @@ public class LoginPresenter {
         try {
             if (loginModel.validateCredentials()) {
                 setClientVisible();
+                clientModel.setUserName(loginView.getUserNameText());
                 clientPresenter.clientView.setLoginText(loginModel.getUsername());
             }
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
@@ -67,6 +68,7 @@ public class LoginPresenter {
             if (loginModel.createNewUser()) {
                 loginModel.validateCredentials();
                 setClientVisible();
+                clientModel.setUserName(loginView.getUserNameText());
                 clientPresenter.clientView.setLoginText(loginModel.getUsername());
             }   } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             Logger.getLogger(LoginPresenter.class.getName()).log(Level.SEVERE, null, ex);
