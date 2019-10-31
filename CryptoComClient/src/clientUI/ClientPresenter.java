@@ -20,12 +20,12 @@ import javax.swing.table.DefaultTableModel;
 public class ClientPresenter {
     CryptoComClient clientModel;
     IClient clientView;
-    LClient loginView;
     
-    public ClientPresenter(CryptoComClient clientModel, IClient clientView, LClient loginView) {
+    
+    public ClientPresenter(CryptoComClient clientModel, IClient clientView) {
         this.clientView = clientView;
         this.clientModel = clientModel;
-        this.loginView = loginView;
+        
         
     }
     
@@ -61,23 +61,8 @@ public class ClientPresenter {
         this.clear();
     }
     
-    // Calls clientView.getLoginText() to get the username in the textfield
-    // then calls the clients setUserName() to take that text and set it to the
-    // client
-    public void login() throws RemoteException {
-        String input = loginView.getLoginText();
-        if (input.trim().length() > 0) {
-        clientModel.setUserName(input);    
-        loginView.setVisibility();
-        clientView.setVisibility();
-        this.displayListOfUnreadMessages();
-        clientView.setLoginText(clientModel.getUserName());        
-        }
-        else {
-            javax.swing.JOptionPane.showMessageDialog(null, "Please ensure username field is populated", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }
+    
+    
     
     public void clear() {
         clientView.setMessageText("");

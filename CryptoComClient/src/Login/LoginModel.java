@@ -54,11 +54,11 @@ public class LoginModel {
         this.username = username;
     }
     
-    public String setPassword() {
+    public String getPassword() {
         return this.password;
     }
     
-    public void getPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }
