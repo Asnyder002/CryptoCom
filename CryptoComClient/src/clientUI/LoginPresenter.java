@@ -47,7 +47,7 @@ public class LoginPresenter {
         loginView.setUserNameText("");
     }
     
-    public void loginButtonClicked() {
+    public void loginButtonClicked() throws RemoteException {
         loginModel.setUsername(loginView.getUserNameText());
         loginModel.setPassword(loginView.getPasswordText());
         try {
@@ -61,7 +61,7 @@ public class LoginPresenter {
         }
     }
     
-    public void signUpButtonClicked() {
+    public void signUpButtonClicked() throws RemoteException {
     loginModel.setUsername(loginView.getUserNameText());
     loginModel.setPassword(loginView.getPasswordText());
         try {
