@@ -55,6 +55,7 @@ public class LoginPresenter {
                 setClientVisible();
                 clientModel.setUserName(loginView.getUserNameText());
                 clientPresenter.clientView.setLoginText(loginModel.getUsername());
+                loginView.setVisibility(false);
             }
             else {
                 JOptionPane.showMessageDialog(null, "Invalid username/password");
@@ -72,6 +73,7 @@ public class LoginPresenter {
                 setClientVisible();
                 clientModel.setUserName(loginView.getUserNameText());
                 clientPresenter.clientView.setLoginText(loginModel.getUsername());
+                loginView.setVisibility(false);
             }   } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             Logger.getLogger(LoginPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }

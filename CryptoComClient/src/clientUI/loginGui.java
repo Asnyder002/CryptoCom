@@ -5,6 +5,10 @@
  */
 package clientUI;
 
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author codbo
@@ -136,11 +140,19 @@ public class loginGui extends javax.swing.JFrame implements ILogin {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        loginPresenter.loginButtonClicked();
+        try {
+            loginPresenter.loginButtonClicked();
+        } catch (RemoteException ex) {
+            Logger.getLogger(loginGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        loginPresenter.signUpButtonClicked();
+        try {
+            loginPresenter.signUpButtonClicked();
+        } catch (RemoteException ex) {
+            Logger.getLogger(loginGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**
