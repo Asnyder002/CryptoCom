@@ -34,6 +34,10 @@ public class CryptoCom {
         clientGui.setPresenter(presenter);
         loginGui.setPresenter(lPresenter);
         lPresenter.setClientPresenter(presenter);
+        loginGui.setLocationRelativeTo(null);
+        loginGui.setResizable(false);
+        clientGui.setResizable(false);
+        clientGui.setLocationRelativeTo(null);
         loginGui.setVisibility(true);
         System.out.println("All systems good to go!");
         
