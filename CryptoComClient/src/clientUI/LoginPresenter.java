@@ -70,11 +70,15 @@ public class LoginPresenter {
     loginModel.setPassword(loginView.getPasswordText());
         try {
             if (loginModel.createNewUser()) {
-                setClientVisible();
                 clientModel.setUserName(loginView.getUserNameText());
                 clientPresenter.clientView.setLoginText(loginModel.getUsername());
+                setClientVisible();
                 loginView.setVisibility(false);
-            }   } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Username unavailable");
+            }
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             Logger.getLogger(LoginPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
