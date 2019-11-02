@@ -23,6 +23,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
      */
     public clientGui() {
         initComponents();
+        myInitComponents();
     }
     
     ClientPresenter presenter;
@@ -66,6 +67,11 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     @Override
     public void setVisibility() {
         this.setVisible(true);
+    }
+    
+    public void myInitComponents() {
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**

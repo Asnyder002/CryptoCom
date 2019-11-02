@@ -20,6 +20,7 @@ public class loginGui extends javax.swing.JFrame implements ILogin {
      */
     public loginGui() {
         initComponents();
+        myInitComponents();
     }
     
     LoginPresenter loginPresenter;
@@ -51,6 +52,11 @@ public class loginGui extends javax.swing.JFrame implements ILogin {
    
    public void setPresenter (LoginPresenter presenter) {
        this.loginPresenter = presenter;
+   }
+   
+   public void myInitComponents() {
+       this.setLocationRelativeTo(null);
+       this.setResizable(false);
    }
    
     @SuppressWarnings("unchecked")
