@@ -50,9 +50,12 @@ public class ClientPresenter {
     }
     
     public void displayCertainMessage(int number){
-        DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
-        model.removeRow(number);
-        clientView.setMessageText(clientModel.openMessage(number).getMemo());
+        if(number != -1) {
+            DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
+            model.removeRow(number);
+            clientView.setMessageText(clientModel.openMessage(number).getMemo());
+        }
+        
     }
     
     public void send() throws RemoteException{
