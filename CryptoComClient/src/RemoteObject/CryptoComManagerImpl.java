@@ -30,6 +30,8 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         recipientArrayList.add(message);
     }
 
+    // If maps contains the username then pulls that arraylist and sends it to
+    // the caller, otherwise just returns empty array
     @Override
     public List<Message> receiveMessagesFromServer(String userName) throws RemoteException {
         if(messageMap.containsKey(userName)) {
