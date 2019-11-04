@@ -28,6 +28,15 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         // Gets the recipients Arraylist and adds the new message
         List<Message> recipientArrayList = messageMap.get(message.getRecipient());
         recipientArrayList.add(message);
+        
+        // Gets the user from the userMap and adds messages
+        // The UI should never display a user that isn't already
+        // registered so there should be no need for checking if
+        // key exsits.
+        //User user = userMap.get(message.getRecipient());
+        //user.getMessageList().add(message);
+        
+        
     }
 
     // If maps contains the username then pulls that arraylist and sends it to
@@ -40,6 +49,12 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
             return arrayListToSendBack;
         }
         return new ArrayList<Message>();
+        
+        // Gets the arrayList from the user and saves in it a variable. Then
+        // creates a new arraylist for the user and sends the saved one back.
+        //List<Message> arrayListToSendBack = userMap.get(userName).getMessageList();
+        //userMap.get(userName).setMessagesList(new ArrayList<Message>());
+        //return arrayListToSendBack;
         
     }
     
