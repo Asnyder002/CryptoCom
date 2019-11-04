@@ -14,6 +14,7 @@ public class PasswordManager {
     private final static int keyLength = 128;
     private final static String algorithm = "PBKDF2WithHmacSHA1";
     
+    // Generates random salt in byte array and returns it
     public static byte[] generateSalt(){
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
@@ -21,6 +22,7 @@ public class PasswordManager {
         return salt;
     }
     
+    // Creates a PBEKey spec and then passes it to the secret factor to get encoded
     public static byte[] generateHash(String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException{
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iteration, keyLength);
         SecretKeyFactory factory = SecretKeyFactory.getInstance(algorithm);
@@ -28,6 +30,7 @@ public class PasswordManager {
         return hash;
     }
     
+    // Takes in two hashes and comapres for equality
     public static boolean compareHash(byte[] storedPass, byte[] enteredPass) {
         return Arrays.equals(storedPass, enteredPass);
     }
