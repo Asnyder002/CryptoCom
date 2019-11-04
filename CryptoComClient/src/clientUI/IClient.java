@@ -5,6 +5,7 @@
  */
 package clientUI;
 
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 /**
@@ -21,4 +22,5 @@ public interface IClient {
     String getMessageText();
     void setMessageText(String message); 
     JTable getJTable();
+    JComboBox getComboBox();
 }

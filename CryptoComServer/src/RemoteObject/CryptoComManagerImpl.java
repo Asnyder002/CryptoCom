@@ -21,20 +21,20 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
         
         // Checks to see if the recipient already has an arraylist
         // If it doesn't creates a new arraylist with the recipient as the key
-        if(!messageMap.containsKey(message.getRecipient())){
-            messageMap.put(message.getRecipient(), new ArrayList<Message>());
-        }
-        
-        // Gets the recipients Arraylist and adds the new message
-        List<Message> recipientArrayList = messageMap.get(message.getRecipient());
-        recipientArrayList.add(message);
+//        if(!messageMap.containsKey(message.getRecipient())){
+//            messageMap.put(message.getRecipient(), new ArrayList<Message>());
+//        }
+//        
+//        // Gets the recipients Arraylist and adds the new message
+//        List<Message> recipientArrayList = messageMap.get(message.getRecipient());
+//        recipientArrayList.add(message);
         
         // Gets the user from the userMap and adds messages
         // The UI should never display a user that isn't already
         // registered so there should be no need for checking if
         // key exsits.
-        //User user = userMap.get(message.getRecipient());
-        //user.getMessageList().add(message);
+        User user = userMap.get(message.getRecipient());
+        user.getMessageList().add(message);
         
         
     }
@@ -43,18 +43,18 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
     // the caller, otherwise just returns empty array
     @Override
     public List<Message> receiveMessagesFromServer(String userName) throws RemoteException {
-        if(messageMap.containsKey(userName)) {
-            List<Message> arrayListToSendBack = messageMap.get(userName);
-            messageMap.remove(userName);
-            return arrayListToSendBack;
-        }
-        return new ArrayList<Message>();
+//        if(messageMap.containsKey(userName)) {
+//            List<Message> arrayListToSendBack = messageMap.get(userName);
+//            messageMap.remove(userName);
+//            return arrayListToSendBack;
+//        }
+//        return new ArrayList<Message>();
         
         // Gets the arrayList from the user and saves in it a variable. Then
         // creates a new arraylist for the user and sends the saved one back.
-        //List<Message> arrayListToSendBack = userMap.get(userName).getMessageList();
-        //userMap.get(userName).setMessagesList(new ArrayList<Message>());
-        //return arrayListToSendBack;
+        List<Message> arrayListToSendBack = userMap.get(userName).getMessageList();
+        userMap.get(userName).setMessagesList(new ArrayList<Message>());
+        return arrayListToSendBack;
         
     }
     

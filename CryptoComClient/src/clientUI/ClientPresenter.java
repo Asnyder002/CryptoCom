@@ -11,6 +11,8 @@ import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -62,6 +64,17 @@ public class ClientPresenter {
         Message message = clientModel.createNewMessage(clientView.getMessageText(),clientModel.getUserName(),clientView.getRecipientText());
         clientModel.sendMessage(message);
         this.clear();
+    }
+    
+    public void populateComboBox() throws RemoteException {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) clientView.getComboBox().getModel();
+        List<String> usernames = clientModel.getListofRegisteredUsers();
+        
+        model.removeAllElements();
+        
+        for(int i=0; i < usernames.size(); i++) {
+            model.addElement(usernames.get(i));
+        }
     }
     
     
