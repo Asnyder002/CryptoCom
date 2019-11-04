@@ -12,4 +12,5 @@ public interface CryptoComManager extends Remote{
     public void addNewUser(User user) throws RemoteException;
     public boolean usernameTaken(String username) throws RemoteException;
     public User getUser(String username) throws RemoteException;
+    public List<String> getListOfUsernames() throws RemoteException;
 }

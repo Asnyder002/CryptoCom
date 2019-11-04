@@ -74,5 +74,10 @@ public class CryptoComManagerImpl extends UnicastRemoteObject implements CryptoC
     }
     
     public Map<String, List<Message>> getHashMap() {return messageMap;}
+
+    @Override
+    public List<String> getListOfUsernames() throws RemoteException {
+        return new ArrayList<String>(userMap.keySet());
+    }
     
 }
