@@ -29,10 +29,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     
     ClientPresenter presenter;
     
-    @Override
-    public String getLoginText() {
-        return loginTextField.getText();
-    }
+    
+    
     @Override
     public String getLoginLabelText() {
         return loginStatusLabel.getText();
@@ -41,14 +39,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     public void setLoginText(String name){
         this.loginStatusLabel.setText("Currently logged in as:" + name); 
     }
-    @Override
-    public String getRecipientText() {
-        return this.recipientTextField.getText();
-    }
-    @Override
-    public void setRecipientText(String name) {
-        this.recipientTextField.setText(name);
-    }
+    
+    
     @Override
     public String getMessageText() {
         return this.messageTextArea.getText();
@@ -93,11 +85,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         messageTextArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         unreadMessagesTable = new javax.swing.JTable();
-        recipientTextField = new javax.swing.JTextField();
         sendButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
-        loginTextField = new javax.swing.JTextField();
-        loginButton = new javax.swing.JButton();
         loginStatusLabel = new javax.swing.JLabel();
         displayMessageButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
@@ -139,8 +128,6 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         jScrollPane2.setViewportView(unreadMessagesTable);
         unreadMessagesTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        recipientTextField.setText("Recipient");
-
         sendButton.setText("Send");
         sendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,13 +139,6 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearButtonActionPerformed(evt);
-            }
-        });
-
-        loginButton.setText("Login");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
             }
         });
 
@@ -199,24 +179,15 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(recipientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(loginStatusLabel))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(loginButton))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(sendButton)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(clearButton)))
+                                .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(sendButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(clearButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(displayMessageButton))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(loginStatusLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(49, 49, 49))))
@@ -230,28 +201,19 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(recipientTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendButton)
                     .addComponent(clearButton)
-                    .addComponent(displayMessageButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshButton)
+                    .addComponent(displayMessageButton)
                     .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loginTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(refreshButton)
                     .addComponent(loginStatusLabel))
-                .addContainerGap())
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        //presenter.login();
-    }//GEN-LAST:event_loginButtonActionPerformed
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         try {
@@ -327,11 +289,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     private javax.swing.JButton displayMessageButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginStatusLabel;
-    private javax.swing.JTextField loginTextField;
     private javax.swing.JTextArea messageTextArea;
-    private javax.swing.JTextField recipientTextField;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton sendButton;
     private javax.swing.JTable unreadMessagesTable;

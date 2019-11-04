@@ -61,7 +61,7 @@ public class ClientPresenter {
     }
     
     public void send() throws RemoteException{
-        Message message = clientModel.createNewMessage(clientView.getMessageText(),clientModel.getUserName(),clientView.getRecipientText());
+        Message message = clientModel.createNewMessage(clientView.getMessageText(),clientModel.getUserName(), (String) clientView.getComboBox().getSelectedItem());
         clientModel.sendMessage(message);
         this.clear();
     }
@@ -82,7 +82,7 @@ public class ClientPresenter {
     
     public void clear() {
         clientView.setMessageText("");
-        clientView.setRecipientText("");
+        
         
     }
     
