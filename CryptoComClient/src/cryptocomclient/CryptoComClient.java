@@ -72,6 +72,10 @@ public class CryptoComClient {
         
     }
     
+    public List<String> getListofRegisteredUsers() throws RemoteException {
+        return ccm.getListOfUsernames();
+    }
+    
     
     
     // Getters and setters for fields listed at the top
