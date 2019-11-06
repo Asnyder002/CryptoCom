@@ -19,4 +19,12 @@ public class KeyGenerator {
         this.privateKey = keyPair.getPrivate();
     }
     
+    public PublicKey getPublicKey() {
+        return this.publicKey;
+    }
+    
+    public PrivateKey getPrivateKey() {
+        return this.privateKey;
+    }
+    
 }
