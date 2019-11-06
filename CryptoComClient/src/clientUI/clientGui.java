@@ -23,6 +23,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
      * Creates new form clientGUI
      */
     public clientGui() {
+        this.setUndecorated(true);
         initComponents();
         myInitComponents();
     }
@@ -37,7 +38,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     }
     @Override
     public void setLoginText(String name){
-        this.loginStatusLabel.setText("Currently logged in as:" + name); 
+        this.loginStatusLabel.setText("Currently logged in as: " + name); 
     }
     
     
@@ -81,22 +82,21 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        messageTextArea = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         unreadMessagesTable = new javax.swing.JTable();
+        UsernameBox = new javax.swing.JComboBox<>();
         sendButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         loginStatusLabel = new javax.swing.JLabel();
         displayMessageButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
-        UsernameBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        messageTextArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        messageTextArea.setColumns(20);
-        messageTextArea.setRows(5);
-        jScrollPane1.setViewportView(messageTextArea);
+        jPanel2.setBackground(new java.awt.Color(34, 34, 34));
 
         unreadMessagesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,100 +128,150 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         jScrollPane2.setViewportView(unreadMessagesTable);
         unreadMessagesTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        sendButton.setText("Send");
-        sendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendButtonActionPerformed(evt);
-            }
-        });
-
-        clearButton.setText("Clear");
-        clearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearButtonActionPerformed(evt);
-            }
-        });
-
-        loginStatusLabel.setText("Not currently logged in.");
-
-        displayMessageButton.setText("Display Message");
-        displayMessageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayMessageButtonActionPerformed(evt);
-            }
-        });
-
-        refreshButton.setText("Refresh");
-        refreshButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshButtonActionPerformed(evt);
-            }
-        });
-
+        UsernameBox.setBackground(new java.awt.Color(34, 34, 34));
+        UsernameBox.setBorder(null);
         UsernameBox.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 UsernameBoxFocusGained(evt);
             }
         });
 
+        sendButton.setBackground(new java.awt.Color(0, 215, 0));
+        sendButton.setFont(new java.awt.Font("Trebuchet MS", 3, 14)); // NOI18N
+        sendButton.setForeground(new java.awt.Color(34, 34, 34));
+        sendButton.setText("Send");
+        sendButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        sendButton.setBorderPainted(false);
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
+
+        clearButton.setBackground(new java.awt.Color(0, 215, 0));
+        clearButton.setFont(new java.awt.Font("Trebuchet MS", 3, 14)); // NOI18N
+        clearButton.setForeground(new java.awt.Color(34, 34, 34));
+        clearButton.setText("Clear");
+        clearButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        clearButton.setBorderPainted(false);
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+
+        loginStatusLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
+        loginStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        loginStatusLabel.setText("Not currently logged in.");
+
+        displayMessageButton.setBackground(new java.awt.Color(0, 215, 0));
+        displayMessageButton.setFont(new java.awt.Font("Trebuchet MS", 3, 14)); // NOI18N
+        displayMessageButton.setForeground(new java.awt.Color(34, 34, 34));
+        displayMessageButton.setText("Display Message");
+        displayMessageButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        displayMessageButton.setBorderPainted(false);
+        displayMessageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayMessageButtonActionPerformed(evt);
+            }
+        });
+
+        refreshButton.setBackground(new java.awt.Color(0, 215, 0));
+        refreshButton.setFont(new java.awt.Font("Trebuchet MS", 3, 14)); // NOI18N
+        refreshButton.setForeground(new java.awt.Color(34, 34, 34));
+        refreshButton.setText("Refresh");
+        refreshButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        refreshButton.setBorderPainted(false);
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
+        messageTextArea.setBackground(new java.awt.Color(40, 40, 40));
+        messageTextArea.setColumns(20);
+        messageTextArea.setForeground(new java.awt.Color(0, 215, 0));
+        messageTextArea.setRows(5);
+        messageTextArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        messageTextArea.setCaretColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(messageTextArea);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(sendButton)
+                                .addGap(34, 34, 34)
+                                .addComponent(clearButton))
+                            .addComponent(loginStatusLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(displayMessageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(50, 50, 50))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sendButton)
+                    .addComponent(clearButton)
+                    .addComponent(displayMessageButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refreshButton)
+                    .addComponent(loginStatusLabel))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(sendButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(clearButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(displayMessageButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(loginStatusLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(refreshButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(49, 49, 49))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sendButton)
-                    .addComponent(clearButton)
-                    .addComponent(displayMessageButton)
-                    .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refreshButton)
-                    .addComponent(loginStatusLabel))
-                .addContainerGap(36, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+    private void UsernameBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameBoxFocusGained
         try {
-            presenter.send();
-            JOptionPane.showMessageDialog(null, "Message Sent");
+            presenter.populateComboBox();
         } catch (RemoteException ex) {
             Logger.getLogger(clientGui.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_UsernameBoxFocusGained
+
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+        try {
+            presenter.send();
+        } catch (RemoteException ex) {
+            Logger.getLogger(clientGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_sendButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
@@ -239,14 +289,6 @@ public class clientGui extends javax.swing.JFrame implements IClient {
             Logger.getLogger(clientGui.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_refreshButtonActionPerformed
-
-    private void UsernameBoxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UsernameBoxFocusGained
-        try {
-            presenter.populateComboBox();
-        } catch (RemoteException ex) {
-            Logger.getLogger(clientGui.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_UsernameBoxFocusGained
 
     
     /**
@@ -287,6 +329,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     private javax.swing.JComboBox<String> UsernameBox;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton displayMessageButton;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel loginStatusLabel;
