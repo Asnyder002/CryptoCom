@@ -1,10 +1,19 @@
 package cryptocomclient;
 
+import Crypto.KeyManager;
+import Crypto.RSACryptography;
 import RemoteObject.Message;
 import RemoteObject.CryptoComManager;
 import java.rmi.RemoteException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class CryptoComClient {
     
@@ -22,11 +31,13 @@ public class CryptoComClient {
     }
     
     // Creates a new instance of Message and returns it.
-    public Message createNewMessage(String memo, String sender, String recipient) {
-        //Encryption should be done here
+    public Message createNewMessage(String memo, String sender, String recipient) throws RemoteException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        byte[] encodedPublicKey = ccm.getUser(recipient).getEncodedPublicKey();
+        PublicKey publicKey = KeyManager.getPublicKeyFromBytes(encodedPublicKey);
         
+        byte[] encryptedMemo = RSACryptography.encrypt(memo, publicKey);
         
-        return new Message(memo, sender, recipient);
+        return new Message(encryptedMemo, sender, recipient);
         
     }
     
