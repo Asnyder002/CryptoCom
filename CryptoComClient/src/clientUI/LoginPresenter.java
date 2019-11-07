@@ -8,6 +8,7 @@ package clientUI;
 import cryptocomclient.CryptoComClient;
 import Login.LoginModel;
 import RemoteObject.Message;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -65,7 +66,7 @@ public class LoginPresenter {
         }
     }
     
-    public void signUpButtonClicked() throws RemoteException {
+    public void signUpButtonClicked() throws RemoteException, IOException {
     loginModel.setUsername(loginView.getUserNameText());
     loginModel.setPassword(loginView.getPasswordText());
         try {
