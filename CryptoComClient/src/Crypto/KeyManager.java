@@ -13,12 +13,12 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-public class KeyGenerator {
+public class KeyManager {
     
     private PublicKey publicKey;
     private PrivateKey privateKey;
     
-    public KeyGenerator() throws NoSuchAlgorithmException {
+    public KeyManager() throws NoSuchAlgorithmException {
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
         keyGen.initialize(1024);
         KeyPair keyPair = keyGen.generateKeyPair();
