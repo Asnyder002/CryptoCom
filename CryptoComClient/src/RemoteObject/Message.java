@@ -25,7 +25,7 @@ public class Message implements Serializable{
         
         Message otherMessage = (Message)o;
         
-        if(this.memo == otherMessage.memo &&
+        if(this.encryptedMemo == otherMessage.encryptedMemo &&
            this.sender == otherMessage.sender &&
            this.recipient == otherMessage.recipient) 
         {
