@@ -5,7 +5,8 @@ import java.util.Objects;
 
 public class Message implements Serializable{
     
-    String sender,
+    String memo,
+           sender,
            recipient;
     
     byte[] encryptedMemo;
@@ -45,8 +46,11 @@ public class Message implements Serializable{
         return hash;
     }
     
-    public byte[] getMemo() {return encryptedMemo;}
-    public void setMemo(byte[] encryptedMemo) {this.encryptedMemo = encryptedMemo;}
+    public String getMemo() {return memo;}
+    public void setMemo(String memo) {this.memo = memo;}
+    
+    public byte[] getEncryptedMemo() {return encryptedMemo;}
+    public void setEncryptedMemo(byte[] encryptedMemo) {this.encryptedMemo = encryptedMemo;}
     
     public String getSender() {return sender;}
     public void setSender(String sender) {this.sender = sender;}
