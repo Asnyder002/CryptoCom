@@ -5,12 +5,13 @@ import java.util.Objects;
 
 public class Message implements Serializable{
     
-    String memo,
-           sender,
+    String sender,
            recipient;
     
-    public Message(String memo, String sender, String recipient) {
-        this.memo = memo;
+    byte[] encryptedMemo;
+    
+    public Message(byte[] encrytpedMemo, String sender, String recipient) {
+        this.encryptedMemo = encryptedMemo;
         this.sender = sender;
         this.recipient = recipient;
     }
@@ -38,14 +39,14 @@ public class Message implements Serializable{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.memo);
+        hash = 41 * hash + Objects.hashCode(this.encryptedMemo);
         hash = 41 * hash + Objects.hashCode(this.sender);
         hash = 41 * hash + Objects.hashCode(this.recipient);
         return hash;
     }
     
-    public String getMemo() {return memo;}
-    public void setMemo(String memo) {this.memo = memo;}
+    public byte[] getMemo() {return encryptedMemo;}
+    public void setMemo(byte[] encryptedMemo) {this.encryptedMemo = encryptedMemo;}
     
     public String getSender() {return sender;}
     public void setSender(String sender) {this.sender = sender;}
