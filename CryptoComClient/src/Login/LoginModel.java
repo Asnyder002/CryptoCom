@@ -4,6 +4,7 @@ import Crypto.KeyGenerator;
 import Crypto.KeyManager;
 import RemoteObject.CryptoComManager;
 import RemoteObject.User;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -34,7 +35,7 @@ public class LoginModel {
         return false;
     }
     
-    public boolean createNewUser() throws NoSuchAlgorithmException, InvalidKeySpecException, RemoteException {
+    public boolean createNewUser() throws NoSuchAlgorithmException, InvalidKeySpecException, RemoteException, IOException {
         // Generate random salt
         if(!ccm.usernameTaken(username)) {
             byte[] salt = PasswordManager.generateSalt();
@@ -43,6 +44,9 @@ public class LoginModel {
             // Create new private/public key
             KeyGenerator keyGen = new KeyGenerator();
             byte[] encodedPublicKey = KeyManager.encodePublicKey(keyGen.getPublicKey());
+            // Save privateKey to file
+            byte[] encodedPrivateKey = KeyManager.encodePrivateKey(keyGen.getPrivateKey());
+            KeyManager.saveKeyToFile("RSA/privateKey", encodedPrivateKey);
             // Create new user
             User user = new User(username, hashedPassword, salt, encodedPublicKey);
             // Store the username, salt, and hashed password on the remote object
