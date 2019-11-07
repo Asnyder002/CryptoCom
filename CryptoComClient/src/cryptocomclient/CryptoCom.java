@@ -1,6 +1,5 @@
 package cryptocomclient;
 
-import RemoteObject.Message;
 import RemoteObject.CryptoComManager;
 import clientUI.clientGui;
 import clientUI.ClientPresenter;
@@ -8,12 +7,12 @@ import clientUI.LoginPresenter;
 import clientUI.loginGui;
 import Login.LoginModel;
 import java.rmi.*;
-import java.util.ArrayList;
+
 
 public class CryptoCom {
     
     
-    public static void main(String[] args) throws RemoteException {
+    public static void main(String[] args) throws RemoteException{
         
         // Gets the remote object reference from RemoteObjectConnection
         RemoteObjectConnection netConn = new RemoteObjectConnection();
