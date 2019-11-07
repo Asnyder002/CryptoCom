@@ -51,7 +51,6 @@ public class LoginModel {
             User user = new User(username, hashedPassword, salt, encodedPublicKey);
             // Store the username, salt, and hashed password on the remote object
             ccm.addNewUser(user);
-            System.out.println("THIS IS YOUR FIRST PRIVATE KEY: " + keyGen.getPrivateKey());
             return true;
         }
         return false;

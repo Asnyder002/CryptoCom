@@ -54,9 +54,7 @@ public class CryptoComClient {
         receivedMessageList.remove(index);
         
         byte[] encryptedMemo = openMessage.getEncryptedMemo();
-        System.out.println("THIS IS YOUR ENCRYPTED MEMO: " + encryptedMemo);
         PrivateKey privateKey = KeyManager.getPrivateKeyFromFile("RSA/privateKey");
-        System.out.println("THIS IS YOUR LOADED PRIVATE KEY: " + privateKey);
         String memo = RSACryptography.decrypt(encryptedMemo, privateKey);
         
         openMessage.setMemo(memo);
