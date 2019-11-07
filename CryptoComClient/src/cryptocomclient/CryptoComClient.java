@@ -4,9 +4,11 @@ import Crypto.KeyManager;
 import Crypto.RSACryptography;
 import RemoteObject.Message;
 import RemoteObject.CryptoComManager;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ public class CryptoComClient {
     }
     
     // Returns a message from the recived arrayList at the specified index.
-    public Message openMessage(int index) {
+    public Message openMessage(int index) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         
         if (receivedMessageList.size() == 0) {
             return null;
@@ -50,6 +52,12 @@ public class CryptoComClient {
         
         Message openMessage = receivedMessageList.get(index);
         receivedMessageList.remove(index);
+        
+        byte[] encryptedMemo = openMessage.getEncryptedMemo();
+        PrivateKey privateKey = KeyManager.getPrivateKeyFromFile("RSA/privateKey");
+        String memo = RSACryptography.decrypt(encryptedMemo, privateKey);
+        
+        openMessage.setMemo(memo);
         
         return openMessage;
         
