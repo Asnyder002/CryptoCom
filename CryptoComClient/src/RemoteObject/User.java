@@ -13,10 +13,11 @@ public class User implements Serializable{
     private byte[] encodedPublicKey;
     private List<Message> messageList = new ArrayList<>();
     
-    public User(String username, byte[] hashedPassword, byte[] salt) {
+    public User(String username, byte[] hashedPassword, byte[] salt, byte[] encodedPublicKey) {
         this.username = username;
         this.hashedPassword = hashedPassword;
         this.salt = salt;
+        this.encodedPublicKey = encodedPublicKey;
     }
     
     public String getUsername(){
