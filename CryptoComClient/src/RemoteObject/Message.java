@@ -11,7 +11,7 @@ public class Message implements Serializable{
     
     byte[] encryptedMemo;
     
-    public Message(byte[] encrytpedMemo, String sender, String recipient) {
+    public Message(byte[] encryptedMemo, String sender, String recipient) {
         this.encryptedMemo = encryptedMemo;
         this.sender = sender;
         this.recipient = recipient;

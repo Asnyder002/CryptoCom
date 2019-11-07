@@ -9,8 +9,10 @@ public class Message implements Serializable{
            sender,
            recipient;
     
-    public Message(String memo, String sender, String recipient) {
-        this.memo = memo;
+    byte[] encryptedMemo;
+    
+    public Message(byte[] encrytpedMemo, String sender, String recipient) {
+        this.encryptedMemo = encryptedMemo;
         this.sender = sender;
         this.recipient = recipient;
     }
@@ -24,7 +26,7 @@ public class Message implements Serializable{
         
         Message otherMessage = (Message)o;
         
-        if(this.memo == otherMessage.memo &&
+        if(this.encryptedMemo == otherMessage.encryptedMemo &&
            this.sender == otherMessage.sender &&
            this.recipient == otherMessage.recipient) 
         {
@@ -38,7 +40,7 @@ public class Message implements Serializable{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + Objects.hashCode(this.memo);
+        hash = 41 * hash + Objects.hashCode(this.encryptedMemo);
         hash = 41 * hash + Objects.hashCode(this.sender);
         hash = 41 * hash + Objects.hashCode(this.recipient);
         return hash;
@@ -46,6 +48,9 @@ public class Message implements Serializable{
     
     public String getMemo() {return memo;}
     public void setMemo(String memo) {this.memo = memo;}
+    
+    public byte[] getEncryptedMemo() {return encryptedMemo;}
+    public void setEncryptedMemo(byte[] encryptedMemo) {this.encryptedMemo = encryptedMemo;}
     
     public String getSender() {return sender;}
     public void setSender(String sender) {this.sender = sender;}
