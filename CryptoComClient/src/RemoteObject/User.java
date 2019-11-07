@@ -10,6 +10,7 @@ public class User implements Serializable{
     private String username;
     private byte[] salt;
     private byte[] hashedPassword;
+    private byte[] encodedPublicKey;
     private List<Message> messageList = new ArrayList<>();
     
     public User(String username, byte[] hashedPassword, byte[] salt) {
@@ -42,6 +43,14 @@ public class User implements Serializable{
         this.hashedPassword = hashedPassword;
     }
     
+    public byte[] getEncodedPublicKey() {
+       return this.encodedPublicKey;
+    }
+    
+    public void setEncodedPublicKey(byte[] encodedPublicKey) {
+        this.encodedPublicKey = encodedPublicKey;
+    }
+    
     public List getMessageList() {
         return messageList;
     }
@@ -49,8 +58,5 @@ public class User implements Serializable{
     public void setMessagesList(List messageList) {
         this.messageList = messageList;
     }
-    
-    
-    
     
 }
