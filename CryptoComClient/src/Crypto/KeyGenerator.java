@@ -11,6 +11,7 @@ public class KeyGenerator {
     private PublicKey publicKey;
     private PrivateKey privateKey;
     
+    // Creates RSA 1024 encrypted keys and saves them to the private fields
     public KeyGenerator() throws NoSuchAlgorithmException {
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
         keyGen.initialize(1024);
