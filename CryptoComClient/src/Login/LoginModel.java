@@ -1,5 +1,7 @@
 package Login;
 
+import Crypto.KeyGenerator;
+import Crypto.KeyManager;
 import RemoteObject.CryptoComManager;
 import RemoteObject.User;
 import java.rmi.RemoteException;
@@ -38,8 +40,11 @@ public class LoginModel {
             byte[] salt = PasswordManager.generateSalt();
             // Hash the password with the salt
             byte[] hashedPassword = PasswordManager.generateHash(password, salt);
+            // Create new private/public key
+            KeyGenerator keyGen = new KeyGenerator();
+            byte[] encodedPublicKey = KeyManager.encodePublicKey(keyGen.getPublicKey());
             // Create new user
-            User user = new User(username, hashedPassword, salt);
+            User user = new User(username, hashedPassword, salt, encodedPublicKey);
             // Store the username, salt, and hashed password on the remote object
             ccm.addNewUser(user);
             return true;
