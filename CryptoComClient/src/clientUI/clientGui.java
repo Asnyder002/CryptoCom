@@ -93,11 +93,14 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         refreshButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         messageTextArea = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(34, 34, 34));
 
+        unreadMessagesTable.setBackground(new java.awt.Color(25, 25, 25));
+        unreadMessagesTable.setForeground(new java.awt.Color(25, 25, 25));
         unreadMessagesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -196,6 +199,15 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         messageTextArea.setCaretColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(messageTextArea);
 
+        jButton1.setBackground(new java.awt.Color(34, 34, 34));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/x-mark-16.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -221,12 +233,16 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(refreshButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(displayMessageButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(50, 50, 50))))
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
@@ -240,7 +256,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(refreshButton)
                     .addComponent(loginStatusLabel))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,6 +306,10 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         }
     }//GEN-LAST:event_refreshButtonActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jButton1MouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -329,6 +349,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     private javax.swing.JComboBox<String> UsernameBox;
     private javax.swing.JButton clearButton;
     private javax.swing.JButton displayMessageButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
