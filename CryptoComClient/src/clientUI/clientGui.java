@@ -99,8 +99,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
 
         jPanel2.setBackground(new java.awt.Color(34, 34, 34));
 
-        unreadMessagesTable.setBackground(new java.awt.Color(25, 25, 25));
-        unreadMessagesTable.setForeground(new java.awt.Color(25, 25, 25));
+        unreadMessagesTable.setBackground(new java.awt.Color(40, 40, 40));
+        unreadMessagesTable.setForeground(new java.awt.Color(0, 215, 0));
         unreadMessagesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -126,12 +126,18 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         });
         unreadMessagesTable.setColumnSelectionAllowed(true);
         unreadMessagesTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        unreadMessagesTable.setFillsViewportHeight(true);
+        unreadMessagesTable.setGridColor(new java.awt.Color(0, 215, 0));
+        unreadMessagesTable.setName(""); // NOI18N
+        unreadMessagesTable.setRowHeight(35);
+        unreadMessagesTable.setSelectionForeground(new java.awt.Color(0, 215, 0));
         unreadMessagesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         unreadMessagesTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(unreadMessagesTable);
         unreadMessagesTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         UsernameBox.setBackground(new java.awt.Color(34, 34, 34));
+        UsernameBox.setForeground(new java.awt.Color(0, 215, 0));
         UsernameBox.setBorder(null);
         UsernameBox.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -163,8 +169,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
             }
         });
 
-        loginStatusLabel.setFont(new java.awt.Font("Yu Gothic Medium", 1, 14)); // NOI18N
-        loginStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
+        loginStatusLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        loginStatusLabel.setForeground(new java.awt.Color(0, 215, 0));
         loginStatusLabel.setText("Not currently logged in.");
 
         displayMessageButton.setBackground(new java.awt.Color(0, 215, 0));
@@ -253,10 +259,11 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                     .addComponent(clearButton)
                     .addComponent(displayMessageButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(refreshButton)
-                    .addComponent(loginStatusLabel))
+                .addComponent(refreshButton)
                 .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(loginStatusLabel))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

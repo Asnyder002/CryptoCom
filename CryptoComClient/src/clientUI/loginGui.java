@@ -143,12 +143,11 @@ public class loginGui extends javax.swing.JFrame implements ILogin {
         passwordField.setBorder(null);
         passwordField.setOpaque(false);
 
-        signUpButton.setBackground(new java.awt.Color(0, 215, 0));
+        signUpButton.setBackground(new java.awt.Color(24, 24, 24));
         signUpButton.setFont(new java.awt.Font("Trebuchet MS", 3, 14)); // NOI18N
-        signUpButton.setForeground(new java.awt.Color(34, 34, 34));
+        signUpButton.setForeground(new java.awt.Color(0, 215, 0));
         signUpButton.setText("Sign Up");
-        signUpButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        signUpButton.setBorderPainted(false);
+        signUpButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 215, 0)));
         signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpButtonActionPerformed(evt);
