@@ -6,6 +6,7 @@
 package clientUI;
 
 import java.rmi.RemoteException;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -94,6 +95,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         jScrollPane1 = new javax.swing.JScrollPane();
         messageTextArea = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        loginStatusLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -199,7 +201,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
 
         messageTextArea.setBackground(new java.awt.Color(40, 40, 40));
         messageTextArea.setColumns(20);
-        messageTextArea.setForeground(new java.awt.Color(0, 215, 0));
+        messageTextArea.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        messageTextArea.setForeground(new java.awt.Color(204, 255, 255));
         messageTextArea.setRows(5);
         messageTextArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         messageTextArea.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -213,6 +216,10 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                 jButton1MouseClicked(evt);
             }
         });
+
+        loginStatusLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        loginStatusLabel1.setForeground(new java.awt.Color(0, 215, 0));
+        loginStatusLabel1.setText("Recipient");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -229,7 +236,11 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(loginStatusLabel1)))
                                 .addGap(45, 45, 45)
                                 .addComponent(sendButton)
                                 .addGap(34, 34, 34)
@@ -254,7 +265,6 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendButton)
                     .addComponent(clearButton)
                     .addComponent(displayMessageButton))
@@ -263,7 +273,12 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                 .addContainerGap(17, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(loginStatusLabel))
+                .addComponent(loginStatusLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(UsernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loginStatusLabel)
+                .addGap(5, 5, 5))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,6 +307,8 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         try {
             presenter.send();
         } catch (RemoteException ex) {
+            Logger.getLogger(clientGui.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(clientGui.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -361,6 +378,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel loginStatusLabel;
+    private javax.swing.JLabel loginStatusLabel1;
     private javax.swing.JTextArea messageTextArea;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton sendButton;

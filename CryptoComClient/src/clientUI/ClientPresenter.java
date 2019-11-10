@@ -7,12 +7,23 @@ package clientUI;
 
 import cryptocomclient.CryptoComClient;
 import RemoteObject.Message;
+import java.io.IOException;
 import java.rmi.RemoteException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,6 +48,10 @@ public class ClientPresenter {
         
         DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
         
+        DefaultTableCellRenderer renderCenter = new DefaultTableCellRenderer();
+        renderCenter.setHorizontalAlignment(SwingConstants.CENTER);
+        clientView.getJTable().getColumnModel().getColumn(0).setCellRenderer(renderCenter); 
+        
         if(model.getRowCount() > 0) {
             for(int i = model.getRowCount() -1; i > -1; i--) {
                 model.removeRow(i);
@@ -55,15 +70,23 @@ public class ClientPresenter {
         if(number != -1) {
             DefaultTableModel model = (DefaultTableModel) clientView.getJTable().getModel();
             model.removeRow(number);
-            clientView.setMessageText(clientModel.openMessage(number).getMemo());
+            try {
+                clientView.setMessageText(clientModel.openMessage(number).getMemo());
+            } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
+                Logger.getLogger(ClientPresenter.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
     
-    public void send() throws RemoteException{
-        Message message = clientModel.createNewMessage(clientView.getMessageText(),clientModel.getUserName(), (String) clientView.getComboBox().getSelectedItem());
-        clientModel.sendMessage(message);
-        this.clear();
+    public void send() throws RemoteException, NoSuchAlgorithmException{
+        try {
+            Message message = clientModel.createNewMessage(clientView.getMessageText(),clientModel.getUserName(), (String) clientView.getComboBox().getSelectedItem());
+            clientModel.sendMessage(message);
+            this.clear();
+        } catch (InvalidKeySpecException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException ex) {
+            Logger.getLogger(ClientPresenter.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void populateComboBox() throws RemoteException {
