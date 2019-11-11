@@ -10,11 +10,13 @@ public class Message implements Serializable{
            recipient;
     
     byte[] encryptedMemo;
+    byte[] encryptedSecretKey;
     
-    public Message(byte[] encrytpedMemo, String sender, String recipient) {
+    public Message(byte[] encryptedMemo, String sender, String recipient, byte[] encryptedSecretKey) {
         this.encryptedMemo = encryptedMemo;
         this.sender = sender;
         this.recipient = recipient;
+        this.encryptedSecretKey = encryptedSecretKey;
     }
     
     @Override
@@ -57,5 +59,8 @@ public class Message implements Serializable{
     
     public String getRecipient() {return recipient;}
     public void setRecipent(String recipient) {this.recipient = recipient;}
+    
+    public byte[] getEncrytpedSecretKey() {return encryptedSecretKey;}
+    public void setEncrytpedSecretKey(byte[] encryptedSecretKey) {this.encryptedSecretKey = encryptedSecretKey;}
     
 }
