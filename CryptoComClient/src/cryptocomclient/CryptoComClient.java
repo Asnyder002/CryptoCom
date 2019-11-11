@@ -1,7 +1,9 @@
 package cryptocomclient;
 
+import Crypto.CryptoAES;
 import Crypto.KeyManager;
 import Crypto.CryptoRSA;
+import Crypto.KeyGeneratorAES;
 import RemoteObject.Message;
 import RemoteObject.CryptoComManager;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.util.List;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 public class CryptoComClient {
     
@@ -34,12 +37,23 @@ public class CryptoComClient {
     
     // Creates a new instance of Message and returns it.
     public Message createNewMessage(String memo, String sender, String recipient) throws RemoteException, NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        
+        // Gets the encoded key and creates a public key from it.
         byte[] encodedPublicKey = ccm.getUser(recipient).getEncodedPublicKey();
         PublicKey publicKey = KeyManager.getPublicKeyFromBytes(encodedPublicKey);
         
-        byte[] encryptedMemo = CryptoRSA.encrypt(memo, publicKey);
+        // Creates a secretKey
+        SecretKey secretKey = KeyGeneratorAES.generateSecretKey();
         
-        return new Message(encryptedMemo, sender, recipient);
+        // Encrypt memo with the secret key
+        byte[] encryptedMemo = CryptoAES.encrypt(memo, secretKey);
+        //byte[] encryptedMemo = CryptoRSA.encrypt(memo, publicKey);
+        
+        // Encrypt the secret key with the public key
+        byte[] encryptedSecretKey = CryptoRSA.encryptKey(secretKey, publicKey);
+        
+        // Attach encryptedSecretKey to message
+        return new Message(encryptedMemo, sender, recipient, encryptedSecretKey);
         
     }
     
@@ -53,9 +67,18 @@ public class CryptoComClient {
         Message openMessage = receivedMessageList.get(index);
         receivedMessageList.remove(index);
         
+        // Get encrypted memo and secret key
         byte[] encryptedMemo = openMessage.getEncryptedMemo();
+        byte[] encryptedSecretKey = openMessage.getEncrytpedSecretKey();
+        
+        // Get private key to decrypt the secret key
         PrivateKey privateKey = KeyManager.getPrivateKeyFromFile("RSA/privateKey");
-        String memo = CryptoRSA.decrypt(encryptedMemo, privateKey);
+        
+        // Decrypt the secret key using your own private key.
+        SecretKey decryptedSecretKey = CryptoRSA.decryptKey(encryptedSecretKey, privateKey);
+        
+        // Decrypt the memo using the secret key.
+        String memo = CryptoAES.decrypt(encryptedMemo, decryptedSecretKey);
         
         openMessage.setMemo(memo);
         
