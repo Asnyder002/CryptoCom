@@ -10,6 +10,7 @@ public class Message implements Serializable{
            recipient;
     
     byte[] encryptedMemo;
+    byte[] encryptedSecretKey;
     
     public Message(byte[] encryptedMemo, String sender, String recipient) {
         this.encryptedMemo = encryptedMemo;
@@ -57,5 +58,8 @@ public class Message implements Serializable{
     
     public String getRecipient() {return recipient;}
     public void setRecipent(String recipient) {this.recipient = recipient;}
+    
+    public byte[] getEncrytpedSecretKey() {return encryptedSecretKey;}
+    public void setEncrytpedSecretKey(byte[] encryptedSecretKey) {this.encryptedSecretKey = encryptedSecretKey;}
     
 }
