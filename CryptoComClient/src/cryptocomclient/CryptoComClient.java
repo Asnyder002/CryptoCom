@@ -47,7 +47,6 @@ public class CryptoComClient {
         
         // Encrypt memo with the secret key
         byte[] encryptedMemo = CryptoAES.encrypt(memo, secretKey);
-        //byte[] encryptedMemo = CryptoRSA.encrypt(memo, publicKey);
         
         // Encrypt the secret key with the public key
         byte[] encryptedSecretKey = CryptoRSA.encryptKey(secretKey, publicKey);

@@ -11,7 +11,6 @@ public class User implements Serializable{
     private byte[] salt;
     private byte[] hashedPassword;
     private byte[] encodedPublicKey;
-    private byte[] encryptedSecretKey;
     private List<Message> messageList = new ArrayList<>();
     
     public User(String username, byte[] hashedPassword, byte[] salt, byte[] encodedPublicKey) {
@@ -51,14 +50,6 @@ public class User implements Serializable{
     
     public void setEncodedPublicKey(byte[] encodedPublicKey) {
         this.encodedPublicKey = encodedPublicKey;
-    }
-    
-    public byte[] getEncryptedSecretKey() {
-        return this.encryptedSecretKey;
-    }
-    
-    public void setEncryptedSecretKey(byte[] encryptedSecretKey) {
-        this.encryptedSecretKey = encryptedSecretKey;
     }
     
     public List getMessageList() {
