@@ -1,7 +1,7 @@
 package cryptocomclient;
 
 import Crypto.KeyManager;
-import Crypto.RSACryptography;
+import Crypto.CryptoRSA;
 import RemoteObject.Message;
 import RemoteObject.CryptoComManager;
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class CryptoComClient {
         byte[] encodedPublicKey = ccm.getUser(recipient).getEncodedPublicKey();
         PublicKey publicKey = KeyManager.getPublicKeyFromBytes(encodedPublicKey);
         
-        byte[] encryptedMemo = RSACryptography.encrypt(memo, publicKey);
+        byte[] encryptedMemo = CryptoRSA.encrypt(memo, publicKey);
         
         return new Message(encryptedMemo, sender, recipient);
         
@@ -55,7 +55,7 @@ public class CryptoComClient {
         
         byte[] encryptedMemo = openMessage.getEncryptedMemo();
         PrivateKey privateKey = KeyManager.getPrivateKeyFromFile("RSA/privateKey");
-        String memo = RSACryptography.decrypt(encryptedMemo, privateKey);
+        String memo = CryptoRSA.decrypt(encryptedMemo, privateKey);
         
         openMessage.setMemo(memo);
         

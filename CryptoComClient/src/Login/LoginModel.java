@@ -1,6 +1,6 @@
 package Login;
 
-import Crypto.KeyGenerator;
+import Crypto.KeyGeneratorRSA;
 import Crypto.KeyManager;
 import RemoteObject.CryptoComManager;
 import RemoteObject.User;
@@ -42,7 +42,7 @@ public class LoginModel {
             // Hash the password with the salt
             byte[] hashedPassword = PasswordManager.generateHash(password, salt);
             // Create new private/public key
-            KeyGenerator keyGen = new KeyGenerator();
+            KeyGeneratorRSA keyGen = new KeyGeneratorRSA();
             byte[] encodedPublicKey = KeyManager.encodePublicKey(keyGen.getPublicKey());
             // Save privateKey to file
             byte[] encodedPrivateKey = KeyManager.encodePrivateKey(keyGen.getPrivateKey());
