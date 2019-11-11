@@ -8,6 +8,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 public class CryptoRSA {
     
@@ -21,5 +22,11 @@ public class CryptoRSA {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
         return new String(cipher.doFinal(data));
+    }
+    
+    public static byte[] encryptKey(SecretKey secretKey, PublicKey publicKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+	cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+	return cipher.doFinal(secretKey.getBytes());
     }
 }
