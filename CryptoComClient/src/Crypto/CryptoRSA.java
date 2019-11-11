@@ -9,6 +9,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 public class CryptoRSA {
     
@@ -24,9 +25,16 @@ public class CryptoRSA {
         return new String(cipher.doFinal(data));
     }
     
-    public static byte[] encryptKey(SecretKey secretKey, PublicKey publicKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
+    public static byte[] encryptKey(SecretKey secretKey, PublicKey publicKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-	cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-	return cipher.doFinal(secretKey.getBytes());
+	cipher.init(Cipher.PUBLIC_KEY, publicKey);
+	return cipher.doFinal(secretKey.getEncoded());
+    }
+    
+    public static SecretKey decryptKey(byte[] keyBytes, PrivateKey privateKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        cipher.init(Cipher.PRIVATE_KEY, privateKey);
+        byte[] decryptedSecretKey = cipher.doFinal(keyBytes);
+        return new SecretKeySpec(decryptedSecretKey, 0, decryptedSecretKey.length, "AES");
     }
 }
