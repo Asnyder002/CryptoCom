@@ -12,10 +12,11 @@ public class Message implements Serializable{
     byte[] encryptedMemo;
     byte[] encryptedSecretKey;
     
-    public Message(byte[] encryptedMemo, String sender, String recipient) {
+    public Message(byte[] encryptedMemo, String sender, String recipient, byte[] encryptedSecretKey) {
         this.encryptedMemo = encryptedMemo;
         this.sender = sender;
         this.recipient = recipient;
+        this.encryptedSecretKey = encryptedSecretKey;
     }
     
     @Override
