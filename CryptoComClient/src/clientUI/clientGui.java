@@ -5,6 +5,8 @@
  */
 package clientUI;
 
+import java.awt.Color;
+import static java.awt.Color.white;
 import java.rmi.RemoteException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -72,6 +74,9 @@ public class clientGui extends javax.swing.JFrame implements IClient {
     public void myInitComponents() {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        Color background = new Color(34,34,34);
+        this.unreadMessagesTable.getTableHeader().setBackground(background);
+        this.unreadMessagesTable.getTableHeader().setForeground(white);
     }
 
     /**
