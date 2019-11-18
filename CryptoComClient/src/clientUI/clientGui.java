@@ -209,6 +209,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
         messageTextArea.setColumns(20);
         messageTextArea.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
         messageTextArea.setForeground(new java.awt.Color(204, 255, 255));
+        messageTextArea.setLineWrap(true);
         messageTextArea.setRows(5);
         messageTextArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         messageTextArea.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -295,7 +296,7 @@ public class clientGui extends javax.swing.JFrame implements IClient {
                             .addComponent(displayMessageButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(refreshButton)
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
